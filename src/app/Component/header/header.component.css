@@ -1,0 +1,9 @@
+
+ul li a , a {
+    color: white;
+}
+
+.navbar-brand:focus, .navbar-brand:hover {
+    color: rgb(185, 181, 181);
+    cursor: pointer;
+}

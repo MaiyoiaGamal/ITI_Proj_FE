@@ -1,0 +1,84 @@
+<div class="container">
+  <h1 class="text-center mt-3">Employee Attendance</h1>
+  <a class="btn btn-primary mt-3 mb-3 " style="width: 150px;" routerLink="/AddEmployeeAttendance">Add</a>
+  <form [formGroup]="employeeform" (ngSubmit)="onsumbit()">
+      <label for="startdate">From</label>
+      <input type="text" class="form-control mb-3" formControlName="startdate" id="startdate" placeholder="yyyy-mm-dd">
+      <!-- <div [hidden]="employeeform.hasError('invalidDateRange') && (employeeform.dirty || employeeform.touched)">
+       <small class="alert alert-danger" *ngIf="startdate?.errors?.['required']">
+        The From Date Is Required
+      </small>
+      <small class="alert alert-danger" *ngIf="startdate?.errors?.['invalidDateFormat']">
+       time pattern should be like(yyyy-mm-dd)
+      </small>
+      <small class="alert alert-danger" *ngIf="startdate?.errors?.['invalidDateRange']">   
+        the From date can't be grater than the To date
+       </small> 
+      </div> -->
+      
+       <div *ngIf="startdate?.errors && (startdate?.dirty || startdate?.touched)">
+        <small class="alert alert-danger" *ngIf="startdate?.errors?.['required']">
+          The From Date Is Required
+        </small>
+        <small class="alert alert-danger" *ngIf="startdate?.errors?.['invalidDateFormat']">
+         Date format should be like (yyyy-mm-dd)
+        </small>
+        <small class="alert alert-danger" *ngIf="startdate?.errors?.['invalidDateRange']">   
+          The From date cannot be greater than the To date
+        </small> 
+      </div>
+      <label for="enddate">To</label>
+      <input type="text" class="form-control"  formControlName="enddate" id="enddate" placeholder="yyyy-mm-dd"> 
+      <!-- <div [hidden]="employeeform.hasError('invalidDateRange') && (employeeform.dirty || employeeform.touched)">   
+        <small class="alert alert-danger" *ngIf="startdate?.errors?.['required']">
+         The From Date Is Required
+       </small>
+       <small class="alert alert-danger" *ngIf="startdate?.errors?.['invalidDateFormat']">   
+        time pattern should be like(yyyy-mm-dd)
+       </small>
+       <small class="alert alert-danger" *ngIf="startdate?.errors?.['invalidDateRange']">   
+        the From date can't be grater than the To date
+       </small>
+       </div> -->
+       <div *ngIf="enddate?.errors && (enddate?.dirty || enddate?.touched)">
+        <small class="alert alert-danger" *ngIf="enddate?.errors?.['required']">
+          The From Date Is Required
+        </small>
+        <small class="alert alert-danger" *ngIf="enddate?.errors?.['invalidDateFormat']">
+         Date format should be like (yyyy-mm-dd)
+        </small>
+        <small class="alert alert-danger" *ngIf="enddate?.errors?.['invalidDateRange']">   
+          The From date cannot be greater than the To date
+        </small> 
+      </div>
+      <button type="submit" class="btn btn-success mt-3" style="width: 150px;" [hidden]="!employeeform.valid" (click)="displaytable()">View</button>
+  </form>
+
+    <table class="table mt-3 table-striped" [hidden]="!dataLoaded"  id="TABLE">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>attendens</th>
+            <th>deperture</th>
+            <th>plus</th>
+            <th>Late</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of allemp">    
+            <td>{{item.name}}</td>
+            <td>{{item.date}}</td>
+            <td>{{item.attendens}}</td>
+            <td>{{item.deperture}}</td>
+            <td>{{item.plus}}</td>
+            <td>{{item.late}}</td>
+            <td><a [routerLink]="['/EditEmployeeAttendance',item.id,item.date]" class="btn btn-primary">Edit</a></td>
+            <td><a class="btn btn-danger">Delete</a></td>
+
+          </tr>
+        </tbody>
+      </table>
+</div>

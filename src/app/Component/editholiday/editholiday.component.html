@@ -1,0 +1,15 @@
+<div class="container">
+    <h2>Edit Holiday</h2>
+    <form (ngSubmit)="updateHoliday()">
+      <div class="form-group">
+        <label for="holidayName">Name:</label>
+        <input type="text" id="holidayName" name="holidayName" [(ngModel)]="editedHoliday.name" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="holidayDate">Date:</label>
+        <input type="date" id="holidayDate" name="holidayDate" [(ngModel)]="editedHoliday.date" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Update Holiday</button>
+    </form>
+  </div>
+  

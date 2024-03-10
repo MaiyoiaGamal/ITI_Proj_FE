@@ -1,0 +1,63 @@
+<div class="container mt-3">
+
+    <form [formGroup]="employeeform" (ngSubmit)="onsumbit()">
+        <label for="startdate">From</label>
+        <input type="text" class="form-control mb-3" formControlName="startdate" id="startdate" placeholder="yyyy-mm-dd">
+         <!-- <div *ngIf="startdate?.errors && (startdate?.dirty || startdate?.touched)">
+          <small class="alert alert-danger" *ngIf="startdate?.errors?.['required']">
+            The From Date Is Required
+          </small>
+          <small class="alert alert-danger" *ngIf="startdate?.errors?.['invalidDateFormat']">
+           Date format should be like (yyyy-mm-dd)
+          </small>
+          <small class="alert alert-danger" *ngIf="startdate?.errors?.['invalidDateRange']">   
+            The From date cannot be greater than the To date
+          </small> 
+        </div> -->
+        <label for="enddate">To</label>
+        <input type="text" class="form-control"  formControlName="enddate" id="enddate" placeholder="yyyy-mm-dd"> 
+         <!-- <div *ngIf="enddate?.errors && (enddate?.dirty || enddate?.touched)">
+          <small class="alert alert-danger" *ngIf="enddate?.errors?.['required']">
+            The From Date Is Required
+          </small>
+          <small class="alert alert-danger" *ngIf="enddate?.errors?.['invalidDateFormat']">
+           Date format should be like (yyyy-mm-dd)
+          </small>
+          <small class="alert alert-danger" *ngIf="enddate?.errors?.['invalidDateRange']">   
+            The From date cannot be greater than the To date
+          </small> 
+        </div> -->
+        <button type="submit" class="btn btn-success mt-3" style="width: 150px;" (click)="displaytable()">View</button>
+    </form>
+
+
+
+<table class="table table-striped" [hidden]="!bool">
+    <thead>
+      <tr>
+        <th scope=>Name</th>
+        <th scope=>Basic Salary</th>
+        <th scope=>Month</th>
+        <th scope=>Total days</th>
+        <th scope=>Total Plus</th>
+        <th scope=>Total Late</th>
+        <th scope=>Net Salary</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of getempbydate">
+        <td>{{item.name}}</td>
+        <td>{{item.salary}}</td>
+        <ng-container *ngFor="let item2 of item.attendances">
+            <td>{{item2.month}}</td>
+            <td>{{item2.days}}</td>
+            <td>{{item2.plus}}</td>
+            <td>{{item2.late}}</td>
+            <td>{{item2.salary}}</td>
+        </ng-container>
+        
+      </tr>
+    </tbody>
+  </table>
+</div>

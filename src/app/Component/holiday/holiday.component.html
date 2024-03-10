@@ -1,0 +1,50 @@
+<!-- holiday.component.html -->
+
+<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Add New Holiday</h2>
+        <form (ngSubmit)="addHoliday()">
+          <div class="form-group">
+            <label for="holidayName">Name:</label>
+            <input type="text" id="holidayName" name="holidayName" [(ngModel)]="newHoliday.name" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="holidayDate">Date:</label>
+            <input type="date" id="holidayDate" name="holidayDate" [(ngModel)]="newHoliday.date" class="form-control" required>
+          </div>
+          <br>
+          <br>
+          <button type="submit" class="btn btn-primary">Add Holiday</button>
+        </form>
+      </div>
+    </div>
+    
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <h2>All Holidays</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Date</th>
+              <th>Process</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let holiday of holidays">
+              <td>{{ holiday.name }}</td>
+              <td>{{ holiday.date }}</td>
+              <td>
+               <button type="button" class="btn btn-success"[routerLink]="['/EditHoliday', holiday.id]">Edit</button>
+                <span> | </span>
+                <button type="button" class="btn btn-danger" (click)="deleteHoliday(holiday.id)">Delete</button>
+              </td>
+          
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
