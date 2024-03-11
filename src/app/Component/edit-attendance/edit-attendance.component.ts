@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { EmplyeeServiceService } from 'src/app/Services/emplyee-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-attendance',
@@ -79,13 +80,14 @@ export class EditAttendanceComponent implements OnInit {
     try {
       const empData = await this.service.getempbydateid(id, date).toPromise();
       this.nameemplpyee = empData;
-  
+      console.log(this.nameemplpyee)
       const data = await this.service.getbyId(id).toPromise();
       this.dateform = data;
-  
-      const employee = await this.service.getattendancebyID(id).toPromise();
-      this.employee = employee;
-      this.populateForm(employee);
+      console.log(this.dateform)
+      // const employee = await this.service.getattendancebyID(id).toPromise();
+      // this.employee = employee;
+      // console.log(this.employee)
+      this.populateForm(this.nameemplpyee);
     } catch (error) {
       this.errorMessage = 'Error fetching employee';
       console.error(error);
@@ -114,13 +116,13 @@ export class EditAttendanceComponent implements OnInit {
       console.log(updatedEmployeeData)
       this.service.updateemployeebyidanddate(this.id,this.dateRoute,updatedEmployeeData).subscribe(
         () => {
-          alert('Employee updated successfully!');
+          Swal.fire('Success','Employee updated successfully!','success');
           this.employeeform.reset();
           this.location.back()
         },
         (error) => {
           console.error('Error updating employee:', error);
-          alert('Failed to update employee. Please try again.');
+          Swal.fire('Error','Failed to update employee. Please try again.',"error");
         }
       );
     } else {

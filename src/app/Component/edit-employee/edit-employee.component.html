@@ -1,139 +1,151 @@
 <div class="container mt-5">
-    <h1 class="text-center">Edit Employee</h1>
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="form form-control">
-          <div class="mb-3">
-            <label for="fullName" class="form-label">Full Name:</label>
-            <input type="text" id="fullName" formControlName="fullName" class="form-control">
-            <div [hidden]="fullName?.valid || fullName?.untouched">
-              <small class="alert alert-danger" *ngIf="fullName?.errors?.['required']">
-                  fullName is required
+  <h1 class="text-center">Update Employee</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="form form-control">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label for="fullName" class="form-label">Full Name:</label>
+              <input type="text" id="fullName" formControlName="fullName" class="form-control">
+              <div class="mt-3" [hidden]="fullName?.valid || fullName?.untouched">
+                <small class="alert alert-danger" *ngIf="fullName?.errors?.['required']">
+                  Full Name is required
+                </small>
+                <small class="alert alert-danger" *ngIf="fullName?.errors?.['pattern']">
+                  Full Name is not in the correct format (+3 letters)
+                </small>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="mt-3" for="email" class="form-label">Email:</label>
+              <input type="email" id="email" formControlName="email" class="form-control">
+              <div class="mt-3" [hidden]="email?.valid || email?.untouched">
+                <small class="alert alert-danger" *ngIf="email?.errors?.['required']">
+                    Email is required
+                </small>
+                <small class="alert alert-danger" *ngIf="email?.errors?.['email']">
+                  email is not match the pattern email should be like the standered emails d@d.com
               </small>
-              <small class="alert alert-danger" *ngIf="fullName?.errors?.['pattern']">
-                fullName is not match the pattern fullname should be string 
+            </div>
+            </div>
+            <div class="mb-3">
+              <label for="ssn" class="form-label">SSN:</label>
+              <input type="text" id="ssn" formControlName="ssn" class="form-control">
+              <div class="mt-3" [hidden]="ssn?.valid || ssn?.untouched">
+                <small class="alert alert-danger" *ngIf="ssn?.errors?.['required']">
+                    SSN is required
+                </small>
+                <small class="alert alert-danger" *ngIf="ssn?.errors?.['pattern']">
+                  ssn is not match the pattern ssn max length is 14 digets
+              </small>
+            </div>
+            </div>
+            <div class="mb-3">
+              <label class="mt-3" for="address" class="form-label">Address:</label>
+              <input type="text" id="address" formControlName="address" class="form-control">
+              <div class="mt-3" [hidden]="address?.valid || address?.untouched">
+                <small class="alert alert-danger" *ngIf="address?.errors?.['required']">
+                    Address is required
+                </small>
+            </div>
+            </div>
+            <div class="mb-3">
+              <label for="phoneNumber" class="form-label">Phone Number:</label>
+              <input type="text" id="phoneNumber" formControlName="phoneNumber" class="form-control" placeholder="">
+              <div class="mt-3" [hidden]="phoneNumber?.valid || phoneNumber?.untouched">
+                <small class="alert alert-danger" *ngIf="phoneNumber?.errors?.['required']">
+                    Phone Number is required
+                </small>
+                <small class="alert alert-danger" *ngIf="phoneNumber?.errors?.['pattern']">
+                  numbers only from 9d to 14d
+              </small>
+            </div>
+            </div>
+            <div class="mb-3">
+              <label for="nationality" class="form-label">Nationality:</label>
+              <input type="text" id="nationality" formControlName="nationality" class="form-control">
+              <div class="mt-3" [hidden]="nationality?.valid || nationality?.untouched">
+                <small class="alert alert-danger" *ngIf="nationality?.errors?.['required']">
+                    Nationality is required
+                </small>
+                <small class="alert alert-danger" *ngIf="nationality?.errors?.['pattern']">
+                  Nationality is not match the pattern Nationality max length is 15 digets
+               </small>
+            </div>
+            </div>
+            <div class="mb-3">
+              <label for="sex" class="d-block">Gender:</label>
+              <select name="sex" formControlName="sex" class="form-control">
+                <option value="0" selected disabled>Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+              <div class="mt-3" [hidden]="sex?.valid || sex?.untouched">
+                <small class="alert alert-danger" *ngIf="sex?.errors?.['required']">
+                    Gender is required
+                </small>
+                <small class="alert alert-danger" *ngIf="sex?.errors?.['pattern']">
+                  Gender is not match the pattern Gender must be male or female
+               </small>
+            </div>
+            </div>
+            
+          </div>
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label for="birthDate" class="form-label">BirthDate:</label>
+              <input type="date" id="birthDate" formControlName="birthDate" class="form-control">
+              <div class="mt-3" [hidden]="birthDate?.valid || birthDate?.untouched">
+                <small class="alert alert-danger" *ngIf="birthDate?.errors?.['required']"> 
+                    BirthDate is required
+                </small>
+                <small class="alert alert-danger" *ngIf="birthDate?.errors?.['minAge']"> 
+                  age must be > 20
+              </small>
+              <small class="alert alert-danger" *ngIf="birthDate?.errors?.['maxAge']"> 
+                age must be under 50
             </small>
+            </div>
+            </div>
+            <div class="mb-3">
+              <label for="contractDate" class="form-label">ContractDate:</label>
+              <input type="date" [min]="minDate" id="contractDate" formControlName="contractDate" class="form-control">
+              <div  class="mt-3" [hidden]="contractDate?.valid || contractDate?.untouched">
+                <small class="alert alert-danger" *ngIf="contractDate?.errors?.['required']">
+                    ContractDate is required
+                </small>
+                <small class="alert alert-danger" *ngIf="contractDate?.errors?.['minContractDate']">
+                  Date of establishment of the company is (1-1-2020)
+                </small>
+                <small class="alert alert-danger" *ngIf="contractDate?.errors?.['maxContractDate']">
+                  you can't select date after (1-1-2040)
+                </small>
+            </div>
+            </div>
+            <div class="mb-3">
+              <label for="salary" class="form-label">Salary:</label>
+              <input type="text" id="salary" formControlName="salary" class="form-control">
+              <div class="mt-3" [hidden]="salary?.valid || salary?.untouched">
+                <small class="alert alert-danger" *ngIf="salary?.errors?.['required']">
+                  Salary is required
+                </small>
+                <small class="alert alert-danger" *ngIf="salary?.errors?.['pattern']">
+                  Salary pattern is wrong must be only numbers
+                </small>
+                <small class="alert alert-danger" *ngIf="salary?.errors?.['minSalary']">
+                  Salary is less than the minSalary must be grater than 2000
+                </small>
+            </div>
+            
           </div>
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Email:</label>
-            <input type="email" id="email" formControlName="email" class="form-control">
-            <div [hidden]="email?.valid || email?.untouched">
-              <small class="alert alert-danger" *ngIf="email?.errors?.['required']">
-                  Email is required
-              </small>
-              <small class="alert alert-danger" *ngIf="email?.errors?.['email']">
-                email is not match the pattern email should be like the standered emails d@d.com
-            </small>
-          </div>
-          </div>
-          <div class="mb-3">
-            <label for="ssn" class="form-label">SSN:</label>
-            <input type="text" id="ssn" formControlName="ssn" class="form-control">
-            <div [hidden]="ssn?.valid || ssn?.untouched">
-              <small class="alert alert-danger" *ngIf="ssn?.errors?.['required']">
-                  SSN is required
-              </small>
-              <small class="alert alert-danger" *ngIf="ssn?.errors?.['pattern']">
-                ssn is not match the pattern ssn max length is 14 digets
-            </small>
-          </div>
-          </div>
-          <div class="mb-3">
-            <label for="address" class="form-label">Address:</label>
-            <input type="text" id="address" formControlName="address" class="form-control">
-            <div [hidden]="address?.valid || address?.untouched">
-              <small class="alert alert-danger" *ngIf="address?.errors?.['required']">
-                  Address is required
-              </small>
-          </div>
-          </div>
-          <div class="mb-3">
-            <label for="phoneNumber" class="form-label">Phone Number:</label>
-            <input type="text" id="phoneNumber" formControlName="phoneNumber" class="form-control">
-            <div [hidden]="phoneNumber?.valid || phoneNumber?.untouched">
-              <small class="alert alert-danger" *ngIf="phoneNumber?.errors?.['required']">
-                  Phone Number is required
-              </small>
-              <small class="alert alert-danger" *ngIf="phoneNumber?.errors?.['pattern']">
-                phone must be + numbers only 
-             </small>
-          </div>
-          </div>
-          <div class="mb-3">
-            <label for="nationality" class="form-label">Nationality:</label>
-            <input type="text" id="nationality" formControlName="nationality" class="form-control">
-            <div [hidden]="nationality?.valid || nationality?.untouched">
-              <small class="alert alert-danger" *ngIf="nationality?.errors?.['required']">
-                  Nationality is required
-              </small>
-              <small class="alert alert-danger" *ngIf="nationality?.errors?.['pattern']">
-                Nationality is not match the pattern Nationality max length is 15 digets
-             </small>
-          </div>
-          </div>
-          <div class="mb-3">
-            <label for="sex" class="form-label">Gender:</label>
-            <input type="text" id="sex" formControlName="sex" class="form-control">
-            <div [hidden]="sex?.valid || sex?.untouched">
-              <small class="alert alert-danger" *ngIf="sex?.errors?.['required']">
-                  Gender is required
-              </small>
-              <small class="alert alert-danger" *ngIf="sex?.errors?.['pattern']">
-                Gender is not match the pattern Gender must be male or female
-             </small>
-          </div>
-          </div>
-          <div class="mb-3">
-            <label for="birthDate" class="form-label">BirthDate:</label>
-            <input type="date" id="birthDate" formControlName="birthDate" class="form-control">
-            <div [hidden]="birthDate?.valid || birthDate?.untouched">
-              <small class="alert alert-danger" *ngIf="birthDate?.errors?.['required']">
-                  BirthDate is required
-              </small>
-              <small class="alert alert-danger" *ngIf="birthDate?.errors?.['minAge']">
-                min age must be > 20
-            </small>
-          </div>
-          </div>
-          <div class="mb-3">
-            <label for="contractDate" class="form-label">ContractDate:</label>
-            <input type="date" [min]="minDate" id="contractDate" formControlName="contractDate" class="form-control">
-            <div [hidden]="contractDate?.valid || contractDate?.untouched">
-              <small class="alert alert-danger" *ngIf="contractDate?.errors?.['required']">
-                  ContractDate is required
-              </small>
-          </div>
-          </div>
-          <div class="mb-3">
-            <label for="salary" class="form-label">Salary:</label>
-            <input type="text" id="salary" formControlName="salary" class="form-control">
-            <div [hidden]="salary?.valid || salary?.untouched">
-              <small class="alert alert-danger" *ngIf="salary?.errors?.['required']">
-                Salary is required
-              </small>
-              <small class="alert alert-danger" *ngIf="salary?.errors?.['pattern']">
-                Salary pattern is wrong must be only numbers
-              </small>
-              <small class="alert alert-danger" *ngIf="salary?.errors?.['minSalary']">
-                Salary is less than the minSalary must be grater than 2000
-              </small>
-          </div>
-          </div>
-          <!-- <div class="mb-3">
-            <label for="attendens" class="form-label">Attendens:</label>
-            <input type="time" id="attendens" formControlName="attendens" class="form-control">
-          </div>
-          <div class="mb-3">
-            <label for="deperture" class="form-label">Deperture:</label>
-            <input type="time" id="deperture" formControlName="deperture" class="form-control">
-          </div> -->
-          <div class="text-center">
-            <button type="submit" class="btn btn-success" [hidden]="employeeForm.invalid" (click)="backtolist()">Update Employee</button>
-            <a href="" routerLink="/employee" class="btn btn-primary ms-3">Back To List</a>
-          </div>
-        </form>
-      </div>
+        </div>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-success" (click)="showAllErrors()">Update Employee</button>
+          <a href="" routerLink="/employee" class="btn btn-primary ms-3">Back To List</a>
+        </div>
+      </form>
     </div>
   </div>
-  
+</div>

@@ -1,8 +1,19 @@
 <div class="container mt-3">
 
     <form [formGroup]="employeeform" (ngSubmit)="onsumbit()">
-        <label for="startdate">From</label>
-        <input type="text" class="form-control mb-3" formControlName="startdate" id="startdate" placeholder="yyyy-mm-dd">
+      <!-- <label for="id">id</label>
+        <input type="text" class="form-control mb-3" formControlName="id" id="id" > -->
+        <div class="mb-3">
+          <label for="id" class="form-label">Select Employee</label>
+          <select class="form-select" id="id" aria-label="Select Employee" formControlName="id" (change)="onSelect($event)">
+              <option disabled selected>Select an Employee</option>
+              <option *ngFor="let item of allemp" [value]="item.id">{{ item.fullName }}</option>
+          </select>
+      </div>
+      
+
+        <label for="year">Year</label>
+        <input type="text" class="form-control mb-3" formControlName="year" id="year">
          <!-- <div *ngIf="startdate?.errors && (startdate?.dirty || startdate?.touched)">
           <small class="alert alert-danger" *ngIf="startdate?.errors?.['required']">
             The From Date Is Required
@@ -14,8 +25,8 @@
             The From date cannot be greater than the To date
           </small> 
         </div> -->
-        <label for="enddate">To</label>
-        <input type="text" class="form-control"  formControlName="enddate" id="enddate" placeholder="yyyy-mm-dd"> 
+        <label for="month">Month</label>
+        <input type="text" class="form-control"  formControlName="month" id="month" > 
          <!-- <div *ngIf="enddate?.errors && (enddate?.dirty || enddate?.touched)">
           <small class="alert alert-danger" *ngIf="enddate?.errors?.['required']">
             The From Date Is Required
@@ -30,34 +41,35 @@
         <button type="submit" class="btn btn-success mt-3" style="width: 150px;" (click)="displaytable()">View</button>
     </form>
 
+    <table class="table table-striped" [hidden]="!bool">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Basic Salary</th>
+          <th scope="col">Attendance Days</th>
+          <th scope="col">Absence Days</th>
+          <th scope="col">Added Hours</th>
+          <th scope="col">Late Hours</th>
+          <th scope="col">Added Salary</th>
+          <th scope="col">Subtract Salary</th>
+          <th scope="col">Overall Salary</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="getempbydate">
+          <td>{{ getempbydate.emp_name }}</td>
+          <td>{{ getempbydate.salary }}</td>
+          <td>{{ getempbydate.attendaceDays }}</td>
+          <td>{{ getempbydate.absenceDays }}</td>
+          <td>{{ getempbydate.addedHours }}</td>
+          <td>{{ getempbydate.lateHours }}</td>
+          <td>{{ getempbydate.addedSalary }}</td>
+          <td>{{ getempbydate.subtractedSalary }}</td>
+          <td *ngIf="getempbydate.overallSalary > 50 ">{{ getempbydate.overallSalary }}</td>
+        </tr>
+      </tbody>
+    </table>
+    
 
 
-<table class="table table-striped" [hidden]="!bool">
-    <thead>
-      <tr>
-        <th scope=>Name</th>
-        <th scope=>Basic Salary</th>
-        <th scope=>Month</th>
-        <th scope=>Total days</th>
-        <th scope=>Total Plus</th>
-        <th scope=>Total Late</th>
-        <th scope=>Net Salary</th>
-
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of getempbydate">
-        <td>{{item.name}}</td>
-        <td>{{item.salary}}</td>
-        <ng-container *ngFor="let item2 of item.attendances">
-            <td>{{item2.month}}</td>
-            <td>{{item2.days}}</td>
-            <td>{{item2.plus}}</td>
-            <td>{{item2.late}}</td>
-            <td>{{item2.salary}}</td>
-        </ng-container>
-        
-      </tr>
-    </tbody>
-  </table>
 </div>
