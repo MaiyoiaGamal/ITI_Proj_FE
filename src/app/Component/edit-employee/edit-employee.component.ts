@@ -135,6 +135,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { EmplyeeServiceService } from 'src/app/Services/emplyee-service.service';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-edit-employee',
@@ -153,15 +154,15 @@ export class EditEmployeeComponent implements OnInit {
     this.minDate = '2020-01-01'
     this.minage = '2004-01-01'
     this.employeeForm = this.fb.group({
-      fullName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]{6,20}$/)]],
+      fullName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]{3,20}$/)]],  
       email: ['', [Validators.required, Validators.email]],
       ssn: ['', [Validators.required, Validators.maxLength(14),Validators.pattern('^[0-9]{14}$')]],
       address: ['', [Validators.required]],
-      phoneNumber: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
+      phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{6,14}$')]],
       nationality: ['', [Validators.required, Validators.maxLength(15),Validators.pattern('^[a-zA-Z]{1,15}$')]],
       sex: ['', [Validators.required, Validators.maxLength(6),Validators.pattern('^(male|female|Male|Female)$')]],
-      birthDate: ['', [Validators.required,this.minAgeValidator.bind(this)]], 
-      contractDate: ['', [Validators.required]],
+      birthDate: ['', [Validators.required,this.minAgeValidator.bind(this),this.maxAgeValidator.bind(this)]], 
+      contractDate: ['', [Validators.required,this.minContractDateValidator.bind(this),this.maxContractDateValidator.bind(this)]],
       salary: ['', [Validators.required,Validators.pattern(/^\d+$/),this.minSalaryValidator.bind(this)]],
     });
   }
@@ -186,6 +187,50 @@ export class EditEmployeeComponent implements OnInit {
         return { 'minAge': true }; 
     }
     return null; 
+}
+
+
+maxAgeValidator(control: AbstractControl): {[key: string]: any} | null {
+  const birthDateValue = control.value;
+  const birthDate = new Date(birthDateValue);
+  const today = new Date();
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const monthDiff = today.getMonth() - birthDate.getMonth();
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+  
+  if (age > 50) {
+    return { 'maxAge': true }; 
+  }
+  
+  return null; 
+}
+
+
+minContractDateValidator(control: AbstractControl): {[key: string]: any} | null {
+  const contractDateValue = control.value;
+  const contractDate = new Date(contractDateValue);
+  const minDate = new Date('2020-01-01'); 
+
+  if (contractDate < minDate) {
+    return { 'minContractDate': true }; 
+  }
+
+  return null;
+}
+
+
+maxContractDateValidator(control: AbstractControl): {[key: string]: any} | null {
+  const contractDateValue = control.value;
+  const contractDate = new Date(contractDateValue);
+  const maxDate = new Date('2040-01-01'); 
+
+  if (contractDate > maxDate) {
+    return { 'maxContractDate': true }; 
+  }
+
+  return null;
 }
   
   
@@ -265,16 +310,16 @@ get deperture(){
       console.log(updatedEmployeeData)
       this.employeeService.updateEmployee(this.employeeId, updatedEmployeeData).subscribe(
         () => {
-          alert('Employee updated successfully!');
+          Swal.fire('Success', 'Employee updated successfully!', 'success');
           this.employeeForm.reset();
         },
         (error) => {
           console.error('Error updating employee:', error);
-          alert('Failed to update employee. Please try again.');
+          Swal.fire('Error', 'Failed to update employee. Please try again.', 'error');
         }
       );
     } else {
-      alert('Form is not valid. Please fill all required fields.');
+      Swal.fire('Form is not valid. Please fill all required fields.');
     }
   }
 
@@ -285,5 +330,12 @@ get deperture(){
     alert('Employee updated successfully!');
      window.open('/employee',"_Self")
    }
+  }
+
+  showAllErrors() {
+    Object.keys(this.employeeForm.controls).forEach(field => {
+      const control = this.employeeForm.get(field);
+      control?.markAsTouched({ onlySelf: true });
+    });
   }
 }

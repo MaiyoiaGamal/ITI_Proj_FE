@@ -1,6 +1,7 @@
 import { Component, OnInit, Output  } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { EmplyeeServiceService  } from 'src/app/Services/emplyee-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-employee-attendance',
@@ -91,7 +92,7 @@ export class EmployeeAttendanceComponent implements OnInit {
         this.employeeform.reset()
       },
       (error) => {
-        alert("Date Not Found Please Enter A Valid Date");
+        Swal.fire('Error',"Date Not Found Please Enter A Valid Date",'error');
       })
     }
 }

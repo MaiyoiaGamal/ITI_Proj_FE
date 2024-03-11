@@ -61,8 +61,8 @@
             <th>Date</th>
             <th>attendens</th>
             <th>deperture</th>
-            <th>plus</th>
             <th>Late</th>
+            <th>plus</th>
             <th>Edit</th>
             <th>Delete</th>
           </tr>
@@ -73,8 +73,8 @@
             <td>{{item.date}}</td>
             <td>{{item.attendens}}</td>
             <td>{{item.deperture}}</td>
-            <td>{{item.plus}}</td>
             <td>{{item.late}}</td>
+            <td>{{item.plus}}</td>
             <td><a [routerLink]="['/EditEmployeeAttendance',item.id,item.date]" class="btn btn-primary">Edit</a></td>
             <td><a class="btn btn-danger">Delete</a></td>
 

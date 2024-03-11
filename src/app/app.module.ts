@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -18,6 +18,8 @@ import { HolidayComponent } from './Component/holiday/holiday.component';
 import { EditholidayComponent } from './Component/editholiday/editholiday.component';
 import { HomeComponent } from './Component/home/home.component';
 import { EmployeesReportsComponent } from './Component/employees-reports/employees-reports.component';
+import { DashboardComponent } from './Component/dashboard/dashboard.component';
+
 
 @NgModule({
   declarations: [
@@ -34,14 +36,17 @@ import { EmployeesReportsComponent } from './Component/employees-reports/employe
     HolidayComponent,
     EditholidayComponent,
     HomeComponent,
-    EmployeesReportsComponent
+    EmployeesReportsComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    SweetAlert2Module,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

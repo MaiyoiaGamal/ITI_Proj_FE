@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
 import { EmplyeeServiceService } from 'src/app/Services/emplyee-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-addemployeeattendance',
@@ -35,7 +36,6 @@ filterEmployees(searchTerm: string) {
 onSelect(e:any) {
   this.try = e.target.value;
   console.log('Selected Employee ID:', this.try);
-  // Perform any other actions with the selected employee ID
 }
 get date(){
   return this.employeeForm.get("date")
@@ -68,7 +68,7 @@ onSubmit() {
         console.log(this.emp);
       },
       (error) => {
-        console.error("Error occurred while fetching employee:", error);
+        Swal.fire('Error',"Error occurred while fetching employee:",'error');
         console.log(this.emp);
       });
   const formData = this.employeeForm.value;
@@ -82,11 +82,11 @@ onSubmit() {
   };
   this.service.postEmpattendens(postData).subscribe(
     (response) => {
-      console.log('Attendance record added successfully:', response);
+      Swal.fire('Success','Attendance record added successfully:','success');
       this.employeeForm.reset()
     },
     (error) => {
-      console.error('Error occurred while adding attendance record:', error);
+      Swal.fire('Error','Error occurred while adding attendance record:',"error");
     }
   );
 }

@@ -13,7 +13,7 @@ import { HomeComponent } from './Component/home/home.component';
 import { EmployeesReportsComponent } from './Component/employees-reports/employees-reports.component';
 
 const routes: Routes = [
-  {path:'',component:HomeComponent},
+  {path:'', redirectTo :'home' , pathMatch:'full'},
   {path:'home',component:HomeComponent},
   {path:'employee/:ID',component:EmployeeDeatilesComponent},
   {path:'employee',component:EmployeeComponent},
