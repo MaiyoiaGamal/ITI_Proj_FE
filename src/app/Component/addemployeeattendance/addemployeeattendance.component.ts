@@ -85,12 +85,25 @@ onSubmit() {
       Swal.fire('Success','Attendance record added successfully:','success');
       this.employeeForm.reset()
     },
-    (error) => {
-      Swal.fire('Error','Error occurred while adding attendance record:',"error");
-    }
-  );
-}
-}
+    (errorResponse) => {
+      if (errorResponse.error === "Attendance cannot be posted on holidays.") {
+        console.log(errorResponse)
+        Swal.fire('Error', 'Attendance cannot be posted on holidays.', 'error');
+      } else if (errorResponse.error === 'Employee not found.') {
+        console.log(errorResponse)
+        Swal.fire('Error', 'Employee not found.', 'error');
+      } else if (errorResponse.error === "Attendance for the same date already exists.") {
+        console.log(errorResponse)
+        Swal.fire('Error', 'Attendance for the same date already exists.', 'error');
+      } else if (errorResponse.error === "Attendance cannot be posted on weekends.") {
+        console.log(errorResponse)
+        Swal.fire('Error', "Attendance cannot be posted on weekends.", 'error');
+      }else {
+        console.log(errorResponse)
+        Swal.fire('Error', 'An error occurred.', 'error');
+      }}
+  )}
+  }
 }
 
 
