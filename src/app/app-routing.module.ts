@@ -11,10 +11,16 @@ import { HolidayComponent } from './Component/holiday/holiday.component';
 import { EditholidayComponent } from './Component/editholiday/editholiday.component';
 import { HomeComponent } from './Component/home/home.component';
 import { EmployeesReportsComponent } from './Component/employees-reports/employees-reports.component';
+import { LogInComponent } from './Component/log-in/log-in.component';
+import { RegisterComponent } from './Component/register/register.component';
+import { DashboardComponent } from './Component/dashboard/dashboard.component';
 
 const routes: Routes = [
   {path:'', redirectTo :'home' , pathMatch:'full'},
   {path:'home',component:HomeComponent},
+  {path:'Login', component:LogInComponent},
+  {path:'Register', component:RegisterComponent},
+  {path:'Dash',component:DashboardComponent} ,
   {path:'employee/:ID',component:EmployeeDeatilesComponent},
   {path:'employee',component:EmployeeComponent},
   {path:'Addemployee',component:ADDnewEmpComponent},

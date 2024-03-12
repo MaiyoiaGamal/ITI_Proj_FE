@@ -19,6 +19,8 @@ import { EditholidayComponent } from './Component/editholiday/editholiday.compon
 import { HomeComponent } from './Component/home/home.component';
 import { EmployeesReportsComponent } from './Component/employees-reports/employees-reports.component';
 import { DashboardComponent } from './Component/dashboard/dashboard.component';
+import { LogInComponent } from './Component/log-in/log-in.component';
+import { RegisterComponent } from './Component/register/register.component';
 
 
 @NgModule({
@@ -37,17 +39,18 @@ import { DashboardComponent } from './Component/dashboard/dashboard.component';
     EditholidayComponent,
     HomeComponent,
     EmployeesReportsComponent,
-    DashboardComponent
+    DashboardComponent,
+    LogInComponent,
+    RegisterComponent
   ],
-  imports: [
+  imports:[
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    SweetAlert2Module,
-    
-  ],
+   SweetAlert2Module
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
