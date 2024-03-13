@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+:root{
+    --color: #1bbca3;
+}
+
+
+
+.text-main{
+    color: var(--color);
+}
+
+ .btn-get-started {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 12px 32px;
+    border-radius: 50px;
+    transition: 0.5s;
+    line-height: 1;
+    margin: 10px;
+    color: #1bbca3;
+    animation-delay: 0.8s;
+    border: 2px solid #1bbca3;
+  }
+  
+   .btn-get-started:hover {
+    background: #1bbca3;
+    color: #fff;
+    text-decoration: none;
+  }
