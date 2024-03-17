@@ -1,75 +1,91 @@
-<div class="container mt-3">
 
-    <form [formGroup]="employeeform" (ngSubmit)="onsumbit()">
-      <!-- <label for="id">id</label>
-        <input type="text" class="form-control mb-3" formControlName="id" id="id" > -->
-        <div class="mb-3">
-          <label for="id" class="form-label">Select Employee</label>
-          <select class="form-select" id="id" aria-label="Select Employee" formControlName="id" (change)="onSelect($event)">
-              <option disabled selected>Select an Employee</option>
-              <option *ngFor="let item of allemp" [value]="item.id">{{ item.fullName }}</option>
-          </select>
-      </div>
-      
-
-        <label for="year">Year</label>
-        <input type="text" class="form-control mb-3" formControlName="year" id="year">
-         <!-- <div *ngIf="startdate?.errors && (startdate?.dirty || startdate?.touched)">
-          <small class="alert alert-danger" *ngIf="startdate?.errors?.['required']">
-            The From Date Is Required
-          </small>
-          <small class="alert alert-danger" *ngIf="startdate?.errors?.['invalidDateFormat']">
-           Date format should be like (yyyy-mm-dd)
-          </small>
-          <small class="alert alert-danger" *ngIf="startdate?.errors?.['invalidDateRange']">   
-            The From date cannot be greater than the To date
-          </small> 
-        </div> -->
-        <label for="month">Month</label>
-        <input type="text" class="form-control"  formControlName="month" id="month" > 
-         <!-- <div *ngIf="enddate?.errors && (enddate?.dirty || enddate?.touched)">
-          <small class="alert alert-danger" *ngIf="enddate?.errors?.['required']">
-            The From Date Is Required
-          </small>
-          <small class="alert alert-danger" *ngIf="enddate?.errors?.['invalidDateFormat']">
-           Date format should be like (yyyy-mm-dd)
-          </small>
-          <small class="alert alert-danger" *ngIf="enddate?.errors?.['invalidDateRange']">   
-            The From date cannot be greater than the To date
-          </small> 
-        </div> -->
-        <button type="submit" class="btn btn-success mt-3" style="width: 150px;" (click)="displaytable()">View</button>
-    </form>
-
-    <table class="table table-striped" [hidden]="!bool">
-      <thead>
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Basic Salary</th>
-          <th scope="col">Attendance Days</th>
-          <th scope="col">Absence Days</th>
-          <th scope="col">Added Hours</th>
-          <th scope="col">Late Hours</th>
-          <th scope="col">Added Salary</th>
-          <th scope="col">Subtract Salary</th>
-          <th scope="col">Overall Salary</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngIf="getempbydate">
-          <td>{{ getempbydate.emp_name }}</td>
-          <td>{{ getempbydate.salary }}</td>
-          <td>{{ getempbydate.attendaceDays }}</td>
-          <td>{{ getempbydate.absenceDays }}</td>
-          <td>{{ getempbydate.addedHours }}</td>
-          <td>{{ getempbydate.lateHours }}</td>
-          <td>{{ getempbydate.addedSalary }}</td>
-          <td>{{ getempbydate.subtractedSalary }}</td>
-          <td *ngIf="getempbydate.overallSalary > 50 ">{{ getempbydate.overallSalary }}</td>
-        </tr>
-      </tbody>
-    </table>
-    
-
-
-</div>
+<app-dashboard></app-dashboard>
+<section class="content">
+    <div class="container">
+        <div class="row justify-content-center align-items-center"style="height: 100vh;">
+            <div class="col-lg-8 col-md-10 ">
+                <div class="card">
+                    <div class="header text-center">
+                        <h2><strong>Reports</strong></h2>
+                        <br> 
+                    </div>
+                    <div class="body">
+                      <form [formGroup]="employeeform" (ngSubmit)="onsumbit()" class="">
+                          <div class="row clearfix">
+                              <div class="col-sm-6">
+                                  <div class="form-group">
+                                      <div class="form-line">
+                                          <input type="text" class="form-control" placeholder="&#61442; Search employees" #inpvalue (input)="filterEmployees(inpvalue.value)" required>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <select class="form-select form-control" id="id" aria-label="Select Employee" formControlName="id" (change)="onSelect($event)" required>
+                                      <option disabled selected>Select an Employee</option>
+                                      <option *ngFor="let item of allemp" [value]="item.id">{{ item.fullName }}</option>
+                                  </select>
+                                  </div>
+                              </div>
+                          </div>
+                          <br>
+                          <div class="row clearfix">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="form-line">
+                                  <input type="text" class="form-control mb-3" formControlName="year" id="year" placeholder="&#61442; Years" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                              <div class="form-line">
+                                <input type="text" class="form-control"  formControlName="month" id="month" placeholder="&#61442; Month" required> 
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="d-flex justify-content-center align-items-center" >
+                      <button type="submit" class="btn btn-success mt-3" (click)="displaytable()" [hidden]="!employeeform.valid">View</button>
+                    </div>                  
+                    <br>
+                    <br>
+                    <table class="table table-striped mt-3" id="TABLE" [hidden]="!bool">
+                      <thead class="table-dark">
+                        <tr>
+                          <th scope="col">Name</th>
+                          <th scope="col" style="white-space: nowrap;">Basic Salary</th>
+                          <th scope="col" style="white-space: nowrap;">Attendance Days</th>
+                          <th scope="col" style="white-space: nowrap;">Absence Days</th>
+                          <th scope="col" style="white-space: nowrap;">Added Hours</th>
+                          <th scope="col" style="white-space: nowrap;">Late Hours</th>
+                          <th scope="col" style="white-space: nowrap;">Added Salary</th>
+                          <th scope="col" style="white-space: nowrap;">Subtract Salary</th>
+                          <th scope="col" style="white-space: nowrap;">Overall Salary</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngIf="getempbydate">
+                          <td>{{ getempbydate.emp_name }}</td>
+                          <td style="white-space: nowrap;">{{ getempbydate.salary }}</td>
+                          <td style="white-space: nowrap;">{{ getempbydate.attendaceDays }}</td>
+                          <td style="white-space: nowrap;">{{ getempbydate.absenceDays }}</td>
+                          <td style="white-space: nowrap;">{{ getempbydate.addedHours }}</td>
+                          <td style="white-space: nowrap;">{{ getempbydate.lateHours }}</td>
+                          <td style="white-space: nowrap;">{{ getempbydate.addedSalary }}</td>
+                          <td style="white-space: nowrap;">{{ getempbydate.subtractedSalary }}</td>
+                          <td *ngIf="getempbydate.overallSalary > 50 " style="white-space: nowrap;">{{ getempbydate.overallSalary }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    
+            </form>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </section>
+                    

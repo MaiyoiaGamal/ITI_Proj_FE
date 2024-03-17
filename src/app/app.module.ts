@@ -21,7 +21,9 @@ import { EmployeesReportsComponent } from './Component/employees-reports/employe
 import { DashboardComponent } from './Component/dashboard/dashboard.component';
 import { LogInComponent } from './Component/log-in/log-in.component';
 import { RegisterComponent } from './Component/register/register.component';
-
+import { CalendarModule } from 'primeng/calendar';
+import { AddHolidaysComponent } from './add-holidays/add-holidays.component';
+import { AddnewholidayComponent } from './Component/addnewholiday/addnewholiday.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { RegisterComponent } from './Component/register/register.component';
     EmployeesReportsComponent,
     DashboardComponent,
     LogInComponent,
-    RegisterComponent
+    RegisterComponent,
+    AddHolidaysComponent,
+    AddnewholidayComponent
   ],
   imports:[
     BrowserModule,
@@ -49,7 +53,8 @@ import { RegisterComponent } from './Component/register/register.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-   SweetAlert2Module
+   SweetAlert2Module,
+   CalendarModule
     ],
   providers: [],
   bootstrap: [AppComponent]

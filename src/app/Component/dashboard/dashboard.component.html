@@ -1,16 +1,39 @@
-<div id="wrapper" class="position-fixed ">
-    <div class="bg-dark text-white " id="sidebar-wrapper">
-        <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"><i
-                class="fas fa-user-secret me-2"></i>HR Dashboard</div>
-        <div class="list-group list-group-flush my-3">
-            <a routerLink="/home" class="list-group-item list-group-item-action bg-transparent second-text active"><i
-                    class="fas fa-tachometer-alt me-2"></i>Home</a>
-            <a routerLink="/employee" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                    class="fas fa-project-diagram me-2"></i>Employees</a>
-            <a  routerLink="/EmployeeAttendance" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                    class="fas fa-chart-line me-2"></i>Employees Attendace</a>
-            <a routerLink="/EmployeesReports" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                    class="fas fa-paperclip me-2"></i>Reports</a>
+
+
+<section id="sidebar">
+        <div class="white-label"></div>
+        <div id="sidebar-nav">
+          <ul>
+            <li class="active"><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a (click)="toggleEmployeeActions()"><i class="fa fa-users"></i> Employees</a></li>
+            <!-- Employee Actions -->
+            <ul *ngIf="showEmployeeActions">
+                <li><a href="employee"> &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-plus"></i> All Employee</a></li>
+              <li><a href="Addemployee">&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-plus"></i> Add Employee</a></li>
+            </ul>
+            <li><a (click)="toggleEmployeeAttendanceActions()"><i class="fa fa-pencil-square-o"></i> Employees Attendance</a></li>
+            <!-- Employee Attendance Actions -->
+            <ul *ngIf="showEmployeeAttendanceActions">
+              <li><a href="AddEmployeeAttendance">&nbsp;&nbsp;<i class="fa fa-plus"></i>Add Employee Attendance</a></li>
+              <li><a href="EmployeeAttendance">&nbsp;<i class="fa fa-search"></i>Search Attendance</a></li>
+            </ul>
+            <li><a (click)="toggleHolidayActions()"><i class="fa fa-sitemap"></i> Holidays</a></li>
+            <!-- Holiday Actions -->
+            <ul *ngIf="showHolidayActions">
+              <li><a href="Holiday">&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-plus"></i> All Holiday</a></li>
+              <li><a href="AddHoliday">&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-plus"></i> Add Holiday</a></li>
+            </ul>
+            <li><a (click)="toggleReportsActions()"><i class="fa fa-line-chart"></i> Reports</a></li>
+            <!-- Reports Actions -->
+            <ul *ngIf="showReportsActions">
+              <li><a href="EmployeesReports">&nbsp;<i class="fa fa-search"></i>Search Reports</a></li>
+            </ul>
+            <li class="nav-item">
+              <a class="nav-link" href="Login">
+                <i class="fa fa-sign-out"></i> Logout
+              </a>
+            </li>
+          </ul>
         </div>
-    </div>
-    <!-- /#sidebar-wrapper -->
+      </section>
+      

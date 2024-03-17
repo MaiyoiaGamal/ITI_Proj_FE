@@ -1,0 +1,44 @@
+<app-dashboard></app-dashboard>
+<section class="content">
+  <div class="container-fluid">
+    <div class="row justify-content-center align-items-center" style="height: 100vh;">
+      <div class="col-lg-8 col-md-10">
+        <div class="card">
+          <div class="header text-center">
+            <h2><strong>Add</strong> Holiday</h2>
+          </div>
+          <div class="body">
+            <form [formGroup]="holidayForm" (ngSubmit)="onsubmit()">  
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    <input type="text" id="holidayName" formControlName="holidayName" placeholder="Holiday Name" class="form-control" required>
+                  </div>
+                  <div *ngIf="holidayForm?.get('holidayName')?.invalid && (holidayForm?.get('holidayName')?.dirty || holidayForm?.get('holidayName')?.touched)" class="text-danger">
+                    <div *ngIf="holidayForm?.get('holidayName')?.errors?.['required']">Holiday name is required</div>
+                  </div>
+                </div>
+              </div>  
+              <br>
+              <br> 
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    <input type="date" id="holidayDate" name="date" class="form-control" formControlName="date" required>
+                  </div>
+                </div>
+              </div>  
+              <br>
+              <br>
+              <div class="col-lg-12 p-t-20 text-center">
+                <button type="submit" class="btn btn-primary waves-effect m-r-15">Submit</button>
+                &nbsp;|&nbsp;
+                <button type="button" class="btn btn-success waves-effect" routerLink="/Holiday">Back To List</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

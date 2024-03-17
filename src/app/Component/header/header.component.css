@@ -3,20 +3,28 @@ ul li a , a {
     color: rgb(41, 40, 40);
 }
 
+
 .navbar-brand:focus, .navbar-brand:hover {
-    color: rgb(185, 181, 181);
+    color: #555555;
     cursor: pointer;
 }
+.navbar {
+    background-color: #fff9fcd8 !important;
+  }
+
+  .navbar-nav .nav-link {
+    color: #555555 !important;
+  }
 
 #hrimg {
-    height: 40px;
+    height: 90px;
     width: 50px;
     border-radius: 50vh;
     cursor: pointer;
 }
 
 .custom-style {
-    height: 85px;
+    height: 75px;
     background-color: rgba(0, 0, 0, .1);
     /*margin-left: 96px;*/
     

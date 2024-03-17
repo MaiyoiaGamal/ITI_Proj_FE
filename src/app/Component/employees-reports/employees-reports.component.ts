@@ -39,6 +39,13 @@ ngOnInit(): void {
 }
 
 
+filterEmployees(searchTerm: string) {
+  this.filteredEmployeesarray = this.allemp.filter(employee => {
+    return employee.fullName.toLowerCase().includes(searchTerm.toLowerCase());
+  });
+}
+
+
 
 
 onSelect(e:any) {
