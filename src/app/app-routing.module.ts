@@ -14,6 +14,7 @@ import { EmployeesReportsComponent } from './Component/employees-reports/employe
 import { LogInComponent } from './Component/log-in/log-in.component';
 import { RegisterComponent } from './Component/register/register.component';
 import { DashboardComponent } from './Component/dashboard/dashboard.component';
+import { GenralSettingsComponent } from './Component/genral-settings/genral-settings.component';
 
 const routes: Routes = [
   {path:'', redirectTo :'home' , pathMatch:'full'},
@@ -32,6 +33,7 @@ const routes: Routes = [
   {path:'Holiday' , component:HolidayComponent},
   {path: 'EditHoliday/:id', component: EditholidayComponent },
   {path:'EmployeesReports', component:EmployeesReportsComponent},
+  {path:'genralsettings',component:GenralSettingsComponent},
   
 
 
