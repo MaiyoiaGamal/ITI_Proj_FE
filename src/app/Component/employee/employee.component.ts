@@ -1,20 +1,28 @@
 import { compileNgModule } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { EmplyeeServiceService } from 'src/app/Services/emplyee-service.service';
 import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.css']
+  styleUrls: ['./employee.component.css'],
+ // Import MatCardModule here
 })
+
 export class EmployeeComponent implements OnInit{
  emp:any[]=[]
  
+
+ 
   constructor(private emplyee:EmplyeeServiceService ) {}
   ngOnInit(): void {
+    //this.emplyee.getData().subscribe(p=>this.emp=p)
     this.emplyee.getData().subscribe(p=>this.emp=p)
+  
   }
+  
   deleteEmployee(employeeId: number, obj: any): void {
     console.log(this.emp);
     obj = this.emp.find((emp: any) => emp.id === employeeId);

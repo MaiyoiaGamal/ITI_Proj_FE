@@ -1,73 +1,73 @@
-<!-- <div class="container mt-5 ">
-    <form class="form form-control border-0" (ngSubmit)="onSubmit()" [formGroup]="employeeForm">
-
-        <select class="form-select mb-3" aria-label="Default select example" (change)="onSelect($event)">
-            <option selected disabled >Select Employee </option>
-            <option *ngFor="let item of getallemp" [value]="item.id" >{{item.fullName}}</option>
-        </select>
-     
-    
-        <div class="d-flex">
-        <label  for="date" class="text-center">date</label>
-        <input class="form form-control ms-3 " type="date" formControlName="date" id="date">
+<app-dashboard></app-dashboard>
+<section class="content">
+    <div class="container">
+        <div class="row justify-content-center align-items-center"style="height: 100vh;">
+            <div class="col-lg-8 col-md-10 ">
+                <div class="card">
+                    <div class="header text-center">
+                        <h2><strong>Add</strong> Employee Attendance</h2>
+                        <br>
+                        
+                    </div>
+                  
+                    <div class="body">
+                        <form (ngSubmit)="onSubmit()" [formGroup]="employeeForm" class="">
+                            <div class="row clearfix">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" placeholder="Search employees" #inpvalue (input)="filterEmployees(inpvalue.value)">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <select class="form-select" id="employee" aria-label="Select Employee" (change)="onSelect($event)">
+                                                <option disabled selected  required>Select an Employee</option>
+                                                <option *ngFor="let item of filteredEmployees" [value]="item.id" required>{{item.fullName}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <br>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <label for="date" class="form-label">Date</label>
+                                        <input class="form-control" type="date" formControlName="date" id="date" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="row clearfix">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input class="form-control" type="text" formControlName="attendens" id="attendens" placeholder="Enter attendance time" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" formControlName="deperture" id="deperture" placeholder="Enter departure time" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="col-lg-12 p-t-20 text-center">
+                                <button type="submit" class="btn btn-primary waves-effect m-r-15">Submit</button>
+                                &nbsp;|&nbsp;
+                                <button type="button" class="btn btn-success waves-effect" routerLink="/EmployeeAttendance">Back To List</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="d-flex">
-        <label  for="attendens" class="text-center">attendens</label>
-        <input class="form form-control ms-3 " type="text" formControlName="attendens" id="attendens" placeholder="00:00:00">
-        </div>
-
-        <div class="d-flex">
-        <label  for="deperture" class="text-center">deperture</label>
-        <input class="form form-control ms-3 " type="text" formControlName="deperture" id="deperture"  placeholder="00:00:00">
-        </div>
-        <button class="btn btn-success" type="submit">Submit</button>
-        <button class="btn btn-primary ms-2" routerLink="/EmployeeAttendance">Back To List</button>
-    </form>
-</div> -->
-<div class="container mt-5">
-    <form class="form border-0" (ngSubmit)="onSubmit()" [formGroup]="employeeForm">
-  
-      <div class="mb-3">
-        <label for="employee" class="form-label">Select Employee</label>
-        <input type="text" class="form-control" placeholder="Search employees" #inpvalue (input)="filterEmployees(inpvalue.value)">
-        <select class="form-select" id="employee" aria-label="Select Employee" (change)="onSelect($event)">
-            <option disabled selected>Select an Employee</option>
-            <option *ngFor="let item of filteredEmployees" [value]="item.id">{{item.fullName}}</option>
-        </select>
     </div>
-  
-      <div class="mb-3">
-        <label for="date" class="form-label">Date</label>
-        <input class="form-control" type="date" formControlName="date" id="date">
-      </div>
-  
-      <div class="mb-3">
-        <label for="attendens" class="form-label">Attendance</label>
-        <input class="form-control" type="text" formControlName="attendens" id="attendens" placeholder="Enter attendance time (e.g., 00:00:00)">
-      </div>
-  
-      <div class="mb-3">
-        <label for="deperture" class="form-label">Departure</label>
-        <input class="form-control" type="text" formControlName="deperture" id="deperture" placeholder="Enter departure time (e.g., 00:00:00)">
-      </div>
-  
-      <button class="btn btn-success me-2" type="submit">Submit</button>
-      <a class="btn btn-secondary" routerLink="/EmployeeAttendance">Back To List</a>
-    </form>
-  </div>
-
-
-
-
-
-<!-- date  attendens deperture -->
-   <!-- <div class="d-flex">
-            <label  for="empid" class="text-center">id</label>
-            <input class="form form-control ms-3 " type="text" formControlName="empid" id="empid">
-        </div> -->
-
-        <!-- <div class="d-flex">
-        <label  for="name" class="text-center">Name</label>
-        <input class="form form-control ms-3 " type="text" formControlName="name" id="name">
-        </div> -->
+</section>

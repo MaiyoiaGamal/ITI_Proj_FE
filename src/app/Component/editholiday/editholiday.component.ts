@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmplyeeServiceService } from 'src/app/Services/emplyee-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editholiday',
@@ -36,14 +37,14 @@ export class EditholidayComponent implements OnInit {
     this.holidayService.updateHoliday(this.holidayId, this.editedHoliday)
       .subscribe(
         (response) => {
-          console.log('Holiday updated successfully:', response);
-          // يمكنك تنفيذ منطق للتعامل مع النجاح هنا، مثل إعادة توجيه المستخدم إلى الصفحة الرئيسية
-          this.router.navigate(['/Holiday']);
+          Swal.fire('Success', 'Employee updated successfully!', 'success');
+          // Navigate to the "/Holiday" route after the form submission is successful
+          this.router.navigateByUrl('/Holiday');
         },
         (error) => {
-          console.error('Error updating holiday:', error);
-          // يمكنك تنفيذ منطق لمعالجة الخطأ هنا
+          console.error('Error updating employee:', error);
+          Swal.fire('Error', 'Failed to update employee. Please try again.', 'error');
         }
       );
-  }
-}
+  }}
+

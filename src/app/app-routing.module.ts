@@ -14,6 +14,7 @@ import { EmployeesReportsComponent } from './Component/employees-reports/employe
 import { LogInComponent } from './Component/log-in/log-in.component';
 import { RegisterComponent } from './Component/register/register.component';
 import { DashboardComponent } from './Component/dashboard/dashboard.component';
+import { AddnewholidayComponent } from './Component/addnewholiday/addnewholiday.component';
 import { GenralSettingsComponent } from './Component/genral-settings/genral-settings.component';
 
 const routes: Routes = [
@@ -31,6 +32,7 @@ const routes: Routes = [
   {path:'AddEmployeeAttendance' , component:AddemployeeattendanceComponent},
   {path:'EditEmployeeAttendance/:ID/:Date' , component:EditAttendanceComponent},
   {path:'Holiday' , component:HolidayComponent},
+  {path:'AddHoliday' , component:AddnewholidayComponent},
   {path: 'EditHoliday/:id', component: EditholidayComponent },
   {path:'EmployeesReports', component:EmployeesReportsComponent},
   {path:'genralsettings',component:GenralSettingsComponent},

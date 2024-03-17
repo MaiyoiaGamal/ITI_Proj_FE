@@ -26,6 +26,32 @@ export class AddemployeeattendanceComponent implements OnInit {
   })
 }
 
+items: any[] = [
+  { id: 1, name: 'John Doe' },
+  { id: 2, name: 'Jane Smith' },
+  { id: 3, name: 'Adam Johnson' },
+  { id: 4, name: 'Alice Williams' },
+  // Add more items as needed
+];
+
+searchQuery: string = '';
+selectedEmployee: any;
+
+get filteredItems(): any[] {
+  if (!this.searchQuery) return this.items;
+  
+  return this.items.filter(item => 
+    item.name.toLowerCase().startsWith(this.searchQuery.toLowerCase())
+  );
+}
+
+onSelect2(event: any) {
+  this.selectedEmployee = this.items.find(item => item.id === parseInt(event.target.value));
+}
+
+clearSearch() {
+  this.searchQuery = '';
+}
 filterEmployees(searchTerm: string) {
   this.filteredEmployees = this.getallemp.filter(employee => {
     return employee.fullName.toLowerCase().includes(searchTerm.toLowerCase());

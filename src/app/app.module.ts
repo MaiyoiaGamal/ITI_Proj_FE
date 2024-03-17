@@ -21,6 +21,9 @@ import { EmployeesReportsComponent } from './Component/employees-reports/employe
 import { DashboardComponent } from './Component/dashboard/dashboard.component';
 import { LogInComponent } from './Component/log-in/log-in.component';
 import { RegisterComponent } from './Component/register/register.component';
+import { CalendarModule } from 'primeng/calendar';
+import { AddHolidaysComponent } from './add-holidays/add-holidays.component';
+import { AddnewholidayComponent } from './Component/addnewholiday/addnewholiday.component';
 import { GenralSettingsComponent } from './Component/genral-settings/genral-settings.component';
 
 
@@ -43,6 +46,8 @@ import { GenralSettingsComponent } from './Component/genral-settings/genral-sett
     DashboardComponent,
     LogInComponent,
     RegisterComponent,
+    AddHolidaysComponent,
+    AddnewholidayComponent,
     GenralSettingsComponent
   ],
   imports:[
@@ -51,7 +56,8 @@ import { GenralSettingsComponent } from './Component/genral-settings/genral-sett
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-   SweetAlert2Module
+   SweetAlert2Module,
+   CalendarModule
     ],
   providers: [],
   bootstrap: [AppComponent]
