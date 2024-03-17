@@ -21,6 +21,7 @@ import { EmployeesReportsComponent } from './Component/employees-reports/employe
 import { DashboardComponent } from './Component/dashboard/dashboard.component';
 import { LogInComponent } from './Component/log-in/log-in.component';
 import { RegisterComponent } from './Component/register/register.component';
+import { GenralSettingsComponent } from './Component/genral-settings/genral-settings.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { RegisterComponent } from './Component/register/register.component';
     EmployeesReportsComponent,
     DashboardComponent,
     LogInComponent,
-    RegisterComponent
+    RegisterComponent,
+    GenralSettingsComponent
   ],
   imports:[
     BrowserModule,

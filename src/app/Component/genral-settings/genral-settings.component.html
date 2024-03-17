@@ -1,0 +1,57 @@
+<div class="container mt-3">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <form [formGroup]="Formdata" (ngSubmit)="onSubmit()" class="settings-form">
+          <div class="form-group">
+            <label for="plus">Plus:</label>
+            <input type="text" id="plus" formControlName="plus" class="form-control">
+          </div>
+        
+          <div class="form-group">
+            <label for="late">Late:</label>
+            <input type="text" id="late" formControlName="late" class="form-control">
+          </div>
+    
+          <div class="form-check">
+            <input type="checkbox" value="0"  id="sunday" formControlName="sunday" (change)="onCheckboxChange('sunday')" class="form-check-input">
+            <label for="sunday" class="form-check-label">Sunday</label>
+          </div>
+        
+          <div class="form-check">
+            <input type="checkbox" value="1"  id="monday" formControlName="monday" (change)="onCheckboxChange('monday')" class="form-check-input">
+            <label for="monday" class="form-check-label">Monday</label>
+          </div>
+        
+          <div class="form-check">
+            <input type="checkbox" value="2"  id="tuesday" formControlName="tuesday" (change)="onCheckboxChange('tuesday')" class="form-check-input">
+            <label for="tuesday" class="form-check-label">Tuesday</label>
+          </div>
+        
+          <div class="form-check">
+            <input type="checkbox"  value="3"  id="wednesday" formControlName="wednesday" (change)="onCheckboxChange('wednesday')" class="form-check-input">
+            <label for="wednesday" class="form-check-label">Wednesday</label>
+          </div>
+        
+          <div class="form-check">
+            <input type="checkbox" value="4"  id="thursday" formControlName="thursday" (change)="onCheckboxChange('thursday')" class="form-check-input">
+            <label for="thursday" class="form-check-label">Thursday</label>
+          </div>
+        
+          <div class="form-check">
+            <input type="checkbox" value="5"  id="friday" formControlName="friday" (change)="onCheckboxChange('friday')" class="form-check-input">
+            <label for="friday" class="form-check-label">Friday</label>
+          </div>
+        
+          <div class="form-check">
+            <input type="checkbox" value="6"  id="saturday" formControlName="saturday" (change)="onCheckboxChange('saturday')" class="form-check-input">
+            <label for="saturday" class="form-check-label">Saturday</label>
+          </div>
+        
+        
+        
+          <button type="submit" class="btn btn-primary mt-2">Set</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

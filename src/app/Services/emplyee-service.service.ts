@@ -130,6 +130,19 @@ export class EmplyeeServiceService {
     });
     return this.httpClient.post(`http://localhost:5256/api/Account/Register` , data , { headers:headers , responseType: 'text'} )
    }
+    
+
+   getGenralSettings():Observable<any>
+   {
+    return this.httpClient.get('http://localhost:5256/api/Settings')
+   }
+
+
+
+   postGenralSettings(setting:any):Observable<any>
+   {
+    return this.httpClient.post('http://localhost:5256/api/Settings',setting);
+   }
 
 
 }
