@@ -24,6 +24,8 @@ import { RegisterComponent } from './Component/register/register.component';
 import { CalendarModule } from 'primeng/calendar';
 import { AddHolidaysComponent } from './add-holidays/add-holidays.component';
 import { AddnewholidayComponent } from './Component/addnewholiday/addnewholiday.component';
+import { GenralSettingsComponent } from './Component/genral-settings/genral-settings.component';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { AddnewholidayComponent } from './Component/addnewholiday/addnewholiday.
     LogInComponent,
     RegisterComponent,
     AddHolidaysComponent,
-    AddnewholidayComponent
+    AddnewholidayComponent,
+    GenralSettingsComponent
   ],
   imports:[
     BrowserModule,

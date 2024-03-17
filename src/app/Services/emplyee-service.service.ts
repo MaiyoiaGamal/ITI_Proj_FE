@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs'
 @Injectable({
   providedIn: 'root'
@@ -114,4 +114,38 @@ export class EmplyeeServiceService {
    return this.httpClient.get(`https://localhost:44372/api/Salary/${id}/${year}/${month}`)
    }
    
+
+   login(email:string,password:string):Observable<any>
+   {
+    let login = {email,password}
+    return this.httpClient.post(`http://localhost:5256/api/Account/login` , login)
+   }
+
+   Registertion(login:any):Observable<any>
+   {
+    return this.httpClient.post(`http://localhost:5256/api/Account/Register`, login)
+   }
+
+   registertionnum2(data:any):Observable<any>
+   {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json' 
+    });
+    return this.httpClient.post(`http://localhost:5256/api/Account/Register` , data , { headers:headers , responseType: 'text'} )
+   }
+    
+
+   getGenralSettings():Observable<any>
+   {
+    return this.httpClient.get('http://localhost:5256/api/Settings')
+   }
+
+
+
+   postGenralSettings(setting:any):Observable<any>
+   {
+    return this.httpClient.post('http://localhost:5256/api/Settings',setting);
+   }
+
+
 }
