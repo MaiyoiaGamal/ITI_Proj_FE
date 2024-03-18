@@ -20,6 +20,7 @@ export class EmployeeComponent implements OnInit{
   ngOnInit(): void {
     //this.emplyee.getData().subscribe(p=>this.emp=p)
     this.emplyee.getData().subscribe(p=>this.emp=p)
+    console.log(this.emp)
   
   }
   

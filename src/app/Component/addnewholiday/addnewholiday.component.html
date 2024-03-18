@@ -12,10 +12,10 @@
               <div class="col-sm-12">
                 <div class="form-group">
                   <div class="form-line">
-                    <input type="text" id="holidayName" formControlName="holidayName" placeholder="Holiday Name" class="form-control" required>
+                    <input type="text" id="holidayname" formControlName="holidayname" placeholder="Holiday Name" class="form-control" >
                   </div>
-                  <div *ngIf="holidayForm?.get('holidayName')?.invalid && (holidayForm?.get('holidayName')?.dirty || holidayForm?.get('holidayName')?.touched)" class="text-danger">
-                    <div *ngIf="holidayForm?.get('holidayName')?.errors?.['required']">Holiday name is required</div>
+                  <div *ngIf="holidayForm?.get('holidayname')?.invalid && (holidayForm?.get('holidayName')?.dirty || holidayForm?.get('holidayname')?.touched)" class="text-danger">
+                    <div *ngIf="holidayForm?.get('holidayname')?.errors?.['required']">Holiday name is required</div>
                   </div>
                 </div>
               </div>  
@@ -24,7 +24,7 @@
               <div class="col-sm-12">
                 <div class="form-group">
                   <div class="form-line">
-                    <input type="date" id="holidayDate" name="date" class="form-control" formControlName="date" required>
+                    <input type="date" id="holidayDate" name="date" class="form-control" formControlName="date" >
                   </div>
                 </div>
               </div>  
