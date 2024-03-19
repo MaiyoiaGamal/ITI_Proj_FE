@@ -16,10 +16,10 @@
                 <div class="form-line">
                     <input type="text" class="form-control" placeholder="First Name" formControlName="fullName" required>
                     <div class="mt-3" [hidden]="fullName?.valid || fullName?.untouched">
-                        <small class="alert alert-danger" *ngIf="fullName?.errors?.['required']">
+                        <small class="alert alert-danger" *ngIf="fullName?.errors?.['required']" style="font-size: 0.6em;">
                           Full Name is required
                         </small>
-                        <small class="alert alert-danger" *ngIf="fullName?.errors?.['pattern']">
+                        <small class="alert alert-danger" *ngIf="fullName?.errors?.['pattern']" style="font-size: 0.6em;">
                           Full Name is not in the correct format (+3 letters)
                         </small>
                       </div>
@@ -33,12 +33,12 @@
                 <div class="form-line">
                     <input type="text" class="form-control" placeholder="Nationality"formControlName="nationality" required>
                 </div>
-                <div class="mt-3" [hidden]="nationality?.valid || nationality?.untouched">
+                <div class="mt-3" [hidden]="nationality?.valid || nationality?.untouched"style="font-size: 0.8em;">
                     <small class="alert alert-danger" *ngIf="nationality?.errors?.['required']">
                         Nationality is required
                     </small>
                     <small class="alert alert-danger" *ngIf="nationality?.errors?.['pattern']">
-                      Nationality is not match the pattern Nationality max length is 15 digets
+                      Nationality max length is 15 digets
                    </small>
                 </div>
             </div>

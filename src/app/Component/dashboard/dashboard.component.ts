@@ -13,7 +13,7 @@ export class DashboardComponent  {
   showEmployeeAttendanceActions: boolean = false;
   showHolidayActions: boolean = false;
   showReportsActions: boolean = false;
-
+  showGeneralHolidayActions: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
@@ -36,6 +36,10 @@ export class DashboardComponent  {
   toggleReportsActions() {
     this.showReportsActions = !this.showReportsActions;
 
+  }
+  toggleGeneralHolidayActions() {
+    this.showGeneralHolidayActions = !this.showGeneralHolidayActions;
+   
   }
 
   editEmployee() {

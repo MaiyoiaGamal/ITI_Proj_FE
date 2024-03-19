@@ -28,6 +28,12 @@
             <ul *ngIf="showReportsActions">
               <li><a href="EmployeesReports">&nbsp;<i class="fa fa-search"></i>Search Reports</a></li>
             </ul>
+            <li><a (click)="toggleGeneralHolidayActions()"><i class='fas fa-carrot'></i>&nbsp;&nbsp;General Holiday</a></li>
+            <!-- Reports Actions -->
+            <ul *ngIf="showGeneralHolidayActions">
+              <li><a href="genralsettings">&nbsp;<i class="fa fa-plus"></i> Add General Holiday</a></li>
+            </ul>
+            
             <li class="nav-item">
               <a class="nav-link" href="Login">
                 <i class="fa fa-sign-out"></i> Logout

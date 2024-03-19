@@ -13,15 +13,15 @@ export class AddnewholidayComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private holidayService:EmplyeeServiceService) {
     this.holidayForm = this.formBuilder.group({
-      holidayName: ['', Validators.required],
+      holidayname: ['', Validators.required],
       date: ['', Validators.required]
     });
   }
 
   ngOnInit(): void {}
 
-  get holidayName() {
-    return this.holidayForm.get('holidayName');
+  get holidayname() {
+    return this.holidayForm.get('holidayname');
   }
 
   get date() {
@@ -29,12 +29,13 @@ export class AddnewholidayComponent implements OnInit {
   }
 
   addHoliday(): void {
-    if (this.holidayForm.invalid) {
-      return;
-    }
-  
-    const holidayData: any = this.holidayForm.value;
-  
+    
+    const holidayData = {
+      name: this.holidayname?.value,
+      Date: this.date?.value
+    };
+    
+    
     this.holidayService.addHoliday(holidayData).subscribe(
       () => {
         Swal.fire('Success', 'Holiday added successfully!', 'success');
@@ -46,17 +47,16 @@ export class AddnewholidayComponent implements OnInit {
         if (error.status === 409) {
           errorMessage = 'Holiday with the same name already exists.';
         } else if (error.error && error.error.message) {
-          errorMessage = error.error.message; // تحديد الرسالة من الخطأ الذي يتم استرجاعه من الخادم
+          errorMessage = error.error.message; 
         }
         Swal.fire('Error', errorMessage, 'error');
       }
     );
   }
   
-  onsubmit(): void {
+  onSubmit(){
     this.addHoliday();
   }
-
 
 }
 

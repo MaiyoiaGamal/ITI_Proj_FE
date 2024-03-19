@@ -28,6 +28,8 @@ export class HolidayComponent implements OnInit {
         });
     }
   }
+  holidaydata:any;
+  
 
   deleteHoliday(holidayId: number): void {
     this.holidaysService.deleteHoliday(holidayId)

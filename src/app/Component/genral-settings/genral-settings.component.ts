@@ -9,14 +9,16 @@ import Swal from 'sweetalert2';
   styleUrls: ['./genral-settings.component.css']
 })
 export class GenralSettingsComponent implements OnInit {
+  
   getdata: any;
   Formdata: FormGroup;
   maxCheckboxLimit = 2;
+  weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   constructor(private fb: FormBuilder, private service: EmplyeeServiceService ,) {
     this.Formdata = this.fb.group({
-      plus: ['', Validators.required],
-      late: ['', Validators.required],
+      plus: ['', Validators.required ,Validators.min(1), Validators.max(20)],
+      late: ['', Validators.required, Validators.min(1), Validators.max(20)],
       sunday: [false],
       monday: [false],
       tuesday: [false],
@@ -138,5 +140,41 @@ export class GenralSettingsComponent implements OnInit {
       }
     );
   }
+  onSubmit2(): void {
+    const updatedSettings = { ...this.getdata }; // Clone the existing settings
+  
+    // Assign the values from the form controls to the updatedSettings object
+    updatedSettings.plus = this.Formdata.value.plus;
+    updatedSettings.late = this.Formdata.value.late;
+  
+    // Map selected weekdays to their corresponding indices (0 for Sunday, 1 for Monday, etc.)
+    const selectedWeekdays = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+      .filter(day => this.Formdata.value[day])
+      .map(day => ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'].indexOf(day));
+  
+    // Store the selected weekday indices in the updatedSettings object
+    updatedSettings.holidayDayOne = selectedWeekdays.length > 0 ? selectedWeekdays[0] : null;
+    updatedSettings.holidayDayTwo = selectedWeekdays.length > 1 ? selectedWeekdays[1] : null;
+  
+    // Send the updatedSettings object to the backend API for saving
+    this.service.postGenralSettings(updatedSettings).subscribe(
+      () => {
+        // On successful response, display success message
+        Swal.fire('Success', 'Settings saved successfully', 'success');
+      },
+      (error) => {
+        // On error response, display error message
+        console.log(error);
+        Swal.fire('Error', 'Error occurred while saving settings', 'error');
+      }
+    );
+  }
+  
+
+
+
+
+
+
 }
 
