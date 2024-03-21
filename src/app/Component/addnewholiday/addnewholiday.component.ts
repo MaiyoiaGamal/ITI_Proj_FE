@@ -13,7 +13,7 @@ export class AddnewholidayComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private holidayService:EmplyeeServiceService) {
     this.holidayForm = this.formBuilder.group({
-      holidayname: ['', Validators.required],
+      holidayname: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
       date: ['', Validators.required]
     });
   }

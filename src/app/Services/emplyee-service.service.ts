@@ -67,6 +67,10 @@ export class EmplyeeServiceService {
    {
     return this.httpClient.put(`http://localhost:5256/api/EmployeeAttndens/`+employeeid,employee)
    }
+   deleteEmployeeAttendance(employeeId: number) {
+    return this.httpClient.delete(`http://localhost:5256/api/EmployeeAttndens/${employeeId}`);
+  }
+  
    getHolidays():Observable<any>{
     return this.httpClient.get("http://localhost:5256/api/Holidays");
   }

@@ -27,18 +27,35 @@ export class LogInComponent {
  
 
    login() {
-    this.service.login(this.email?.value, this.password?.value).subscribe(
-      () => {
-        window.open('http://localhost:4200/employee',"_Self")
-      },
-      (error) => {
-        console.log(error)
-        //  if(error.errors === 'The Email field is required.')
-        //  {
-        //   Swal.fire('The Email field is required.')
-        //  }
-      }
-    );
+    if (this.loginform.valid) {
+      this.service.login(this.email?.value, this.password?.value).subscribe(
+        () => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Login Successful',
+            showConfirmButton: false,
+            timer: 1500
+          }).then(() => {
+            window.open('http://localhost:4200/employee', "_self");
+          });
+        },
+        (error) => {
+          // Handle error responses
+          Swal.fire({
+            icon: 'error',
+            title: 'Login Failed',
+            text: 'Please enter a valid username and password.',
+          });
+        }
+      );
+    } else {
+      // Handle case when form fields are empty
+      Swal.fire({
+        icon: 'error',
+        title: 'Login Failed',
+        text: 'Please enter a valid username and password.',
+      });
+    }
   }
   
 }

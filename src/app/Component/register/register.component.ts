@@ -59,8 +59,12 @@ export class RegisterComponent {
   console.log(this.formdata)
   this.service.registertionnum2(this.formdata).subscribe(
     () => {
-      window.open("/Dash", "_self");
+      Swal.fire('Success', 'Account created successfully!', 'success').then(() => {
+        this.formdata.reset();
+        window.open("/Login", "_self");
+      });
     },
+  
     (error) => {
       console.log("Logs");
       if (error.status === 200) {

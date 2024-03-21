@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmplyeeServiceService } from 'src/app/Services/emplyee-service.service';
@@ -17,8 +18,8 @@ export class GenralSettingsComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private service: EmplyeeServiceService ,) {
     this.Formdata = this.fb.group({
-      plus: ['', Validators.required ,Validators.min(1), Validators.max(20)],
-      late: ['', Validators.required, Validators.min(1), Validators.max(20)],
+      plus: ['', [Validators.required, Validators.min(1), Validators.max(20), Validators.pattern(/^\d+$/)]],
+      late: ['', [Validators.required, Validators.min(1), Validators.max(20), Validators.pattern(/^\d+$/)]],
       sunday: [false],
       monday: [false],
       tuesday: [false],
@@ -133,10 +134,11 @@ export class GenralSettingsComponent implements OnInit {
     this.service.postGenralSettings(updatedSettings).subscribe(
       () => {
         Swal.fire('Success','Settings saved successfully',"success");
+        this.Formdata.reset();
       },
       (error) => {
         console.log(error)
-        Swal.fire("Error",'Error occurred while saving settings:',"error");
+        Swal.fire("Error",'Error occurred while saving settings try again:',"error");
       }
     );
   }

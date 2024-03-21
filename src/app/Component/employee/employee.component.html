@@ -21,6 +21,9 @@
     margin-top: 30px; /* Add some space above the table */
     margin-right: 20px;
   }
+  .custom-nav {
+        margin-left: 160px;
+      }
 </style>
 
 
@@ -51,5 +54,27 @@
         </div>
       </li>
     </ul>
-  </div>
-
+  
+ 
+  <div class="row mt-3">
+    <nav aria-label="Page navigation example" class="custom-nav">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link"  aria-label="Previous" (click)="onPageChange(currentPage - 1)">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Previous</span>
+        </a>
+      </li>
+      <li class="page-item" *ngFor="let page of getPageNumbers()">
+        <a class="page-link"  (click)="onPageChange(page)">{{ page }}</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link"  aria-label="Next" (click)="onPageChange(currentPage + 1)">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Next</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+</div>

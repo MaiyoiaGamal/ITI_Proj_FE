@@ -11,13 +11,21 @@ import Swal from 'sweetalert2';
 export class HolidayComponent implements OnInit {
   holidays:any[]=[]
   newHoliday: any = { name: '', date: '' };
+  currentPage: number = 1;
+  itemsPerPage: number = 6;
+ 
+  totalItems: number = 0;
   constructor(private holidaysService:EmplyeeServiceService) { }
   ngOnInit(): void {
     this.getHolidays();
   }
   getHolidays(): void {
     this.holidaysService.getHolidays()
-      .subscribe(holidays => this.holidays = holidays);
+      .subscribe(holidays => {
+        this.holidays = holidays;
+        this.totalItems = holidays.length;
+        this.holidays  = this.holidays .slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage);
+      });
   }
   addHoliday(): void {
     if (this.newHoliday.name && this.newHoliday.date) {
@@ -37,7 +45,19 @@ export class HolidayComponent implements OnInit {
         this.getHolidays();
       });
   }
-
+  onPageChange(page: number): void {
+    this.currentPage = page;
+    this.getHolidays();
+  }
+  getPageNumbers(): number[] {
+    const totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
+  }
+  getDisplayedHolidays(): any[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = Math.min(startIndex + this.itemsPerPage, this.totalItems);
+    return this.holidays.slice(startIndex, endIndex);
+  }
   deletedeleteHoliday2(HolidaysId: number, obj: any): void {
     console.log(this.holidays);
     obj = this.holidays.find((holiday: any) => holiday.id === HolidaysId);
