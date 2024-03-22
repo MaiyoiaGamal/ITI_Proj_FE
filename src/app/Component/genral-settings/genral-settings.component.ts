@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { EmplyeeServiceService } from 'src/app/Services/emplyee-service.service';
@@ -16,9 +17,11 @@ export class GenralSettingsComponent implements OnInit {
   weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   constructor(private fb: FormBuilder, private service: EmplyeeServiceService ,) {
+    // plus: ['', [Validators.required,this.valueRangeValidator.bind(this)]],
+      // late: ['', [Validators.required,this.valueRangeValidator.bind(this)]],
     this.Formdata = this.fb.group({
-      plus: ['', [Validators.required,this.valueRangeValidator.bind(this)]],
-      late: ['', [Validators.required,this.valueRangeValidator.bind(this)]],
+      plus: ['', [Validators.required, Validators.min(1), Validators.max(20), Validators.pattern(/^\d+$/)]],
+      late: ['', [Validators.required, Validators.min(1), Validators.max(20), Validators.pattern(/^\d+$/)]],
       sunday: [false],
       monday: [false],
       tuesday: [false],
@@ -140,10 +143,11 @@ export class GenralSettingsComponent implements OnInit {
     this.service.postGenralSettings(updatedSettings).subscribe(
       () => {
         Swal.fire('Success','Settings saved successfully',"success");
+        this.Formdata.reset();
       },
       (error) => {
         console.log(error)
-        Swal.fire("Error",'Error occurred while saving settings:',"error");
+        Swal.fire("Error",'Error occurred while saving settings try again:',"error");
       }
     );
   }

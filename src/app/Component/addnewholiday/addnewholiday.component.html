@@ -12,20 +12,31 @@
               <div class="col-sm-12">
                 <div class="form-group">
                   <div class="form-line">
-                    <input type="text" id="holidayname" formControlName="holidayname" placeholder="Holiday Name" class="form-control" >
+                    <input type="text" id="holidayname" formControlName="holidayname" placeholder="Holiday Name" class="form-control" required>
+                 
+                    <div *ngIf="holidayForm?.get('holidayname')?.invalid && (holidayForm?.get('holidayname')?.dirty || holidayForm?.get('holidayname')?.touched)" class=" error-messages">
+                      <div *ngIf="holidayForm?.get('holidayname')?.errors?.['required']"><small class="alert alert-danger">Holiday name is required</small></div>
+                      <div *ngIf="holidayForm?.get('holidayname')?.errors?.['pattern']"><small class="alert alert-danger">name must contain letters only</small></div>
                   </div>
-                  <div *ngIf="holidayForm?.get('holidayname')?.invalid && (holidayForm?.get('holidayName')?.dirty || holidayForm?.get('holidayname')?.touched)" class="text-danger">
-                    <div *ngIf="holidayForm?.get('holidayname')?.errors?.['required']">Holiday name is required</div>
-                  </div>
+                  
+                </div>
                 </div>
               </div>  
               <br>
-              <br> 
+              <br>
+              
+<style>.error-messages {
+  margin-top: 20px; /* يُضاف هنا الانتقال الرأسي للعناصر داخله */
+}</style>               
               <div class="col-sm-12">
                 <div class="form-group">
                   <div class="form-line">
-                    <input type="date" id="holidayDate" name="date" class="form-control" formControlName="date" >
-                  </div>
+                    <input type="date" id="holidayDate" name="date" class="form-control" formControlName="date" required>
+                    <div *ngIf="holidayForm?.get('date')?.invalid && (holidayForm?.get('date')?.dirty || holidayForm?.get('date')?.touched)" class=" error-messages">
+                        <div *ngIf="holidayForm?.get('date')?.errors?.['required']"><small class="alert alert-danger">Holiday date is required</small></div>
+                    </div>
+                </div>
+                
                 </div>
               </div>  
               <br>

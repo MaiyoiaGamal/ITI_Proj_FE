@@ -13,14 +13,23 @@ import Swal from 'sweetalert2';
 
 export class EmployeeComponent implements OnInit{
  emp:any[]=[]
- 
+ currentPage: number = 1;
+ itemsPerPage: number = 6;
+
+ totalItems: number = 0;
 
  
   constructor(private emplyee:EmplyeeServiceService ) {}
   ngOnInit(): void {
-    //this.emplyee.getData().subscribe(p=>this.emp=p)
-    this.emplyee.getData().subscribe(p=>this.emp=p)
+   this.loadData();
   
+  }
+  loadData(): void {
+    this.emplyee.getData().subscribe((data: any) => {
+      this.emp = data;
+      this.totalItems = this.emp.length;
+      this.emp = this.emp.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage);
+    });
   }
   
   deleteEmployee(employeeId: number, obj: any): void {
@@ -48,6 +57,18 @@ export class EmployeeComponent implements OnInit{
       }
     });
   }
+  onPageChange(pageNumber: number): void {
+    this.currentPage = pageNumber;
+   this.loadData();
+  }
   
+
+  getPageNumbers(): number[] {
+    let pagesArray: number[] = [];
+    for (let i = 1; i <= Math.ceil(this.totalItems / this.itemsPerPage); i++) {
+      pagesArray.push(i);
+    }
+    return pagesArray;
+  }
   
 }

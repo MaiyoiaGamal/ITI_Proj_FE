@@ -61,6 +61,7 @@ export class RegisterComponent {
     () => {
       window.open("/employee", "_self");
     },
+  
     (error) => {
       console.log("Logs");
       if (error.status === 200) {
