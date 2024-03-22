@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthGuard } from 'src/app/Authgurad/auth.guard';
+import { AuthService } from 'src/app/Services/auth.service';
 import { EmplyeeServiceService } from 'src/app/Services/emplyee-service.service';
 
 @Component({
@@ -14,7 +17,7 @@ export class DashboardComponent  {
   showHolidayActions: boolean = false;
   showReportsActions: boolean = false;
   showGeneralHolidayActions: boolean = false;
-  constructor() { }
+  constructor(private authService:AuthService , private route:Router) { }
 
   ngOnInit(): void {
   
@@ -57,4 +60,8 @@ export class DashboardComponent  {
     console.log('Delete employee clicked');
   }
   
+  logout(): void {
+    this.authService.logout();
+    this.route.navigate(['/Login']);
+  }
 }

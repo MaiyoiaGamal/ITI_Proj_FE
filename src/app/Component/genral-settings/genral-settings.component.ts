@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { EmplyeeServiceService } from 'src/app/Services/emplyee-service.service';
 import Swal from 'sweetalert2';
 
@@ -17,8 +17,8 @@ export class GenralSettingsComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private service: EmplyeeServiceService ,) {
     this.Formdata = this.fb.group({
-      plus: ['', Validators.required ,Validators.min(1), Validators.max(20)],
-      late: ['', Validators.required, Validators.min(1), Validators.max(20)],
+      plus: ['', [Validators.required,this.valueRangeValidator.bind(this)]],
+      late: ['', [Validators.required,this.valueRangeValidator.bind(this)]],
       sunday: [false],
       monday: [false],
       tuesday: [false],
@@ -27,6 +27,13 @@ export class GenralSettingsComponent implements OnInit {
       friday: [false],
       saturday: [false]
     });
+  }
+  valueRangeValidator(control: AbstractControl): ValidationErrors | null {
+    const value = control.value;
+    if (isNaN(value) || value < 1 || value > 20) {
+      return { range: true };
+    }
+    return null;
   }
 
   onCheckboxChange(checkboxName: string): void {

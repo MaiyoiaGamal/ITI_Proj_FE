@@ -59,14 +59,22 @@ export class RegisterComponent {
   console.log(this.formdata)
   this.service.registertionnum2(this.formdata).subscribe(
     () => {
-      window.open("/Dash", "_self");
+      window.open("/employee", "_self");
     },
     (error) => {
       console.log("Logs");
       if (error.status === 200) {
         Swal.fire("Success", "Account Created Successfully", "success");
       } else {
+        console.log(error)
+        if(error.error === "The password and confirm password do not match.")
+        {
+          Swal.fire('Password Match Error','Password not matched','error')
+        }else 
+        {
         Swal.fire("Error", "An error occurred while registering. Please try again later.", "error");
+        }
+        
       }
     }
   );

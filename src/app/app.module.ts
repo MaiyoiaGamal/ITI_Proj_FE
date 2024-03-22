@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { EmployeeComponent } from './Component/employee/employee.component';
 import { HeaderComponent } from './Component/header/header.component';
 import { FooterComponent } from './Component/footer/footer.component';
@@ -25,6 +25,9 @@ import { CalendarModule } from 'primeng/calendar';
 import { AddHolidaysComponent } from './add-holidays/add-holidays.component';
 import { AddnewholidayComponent } from './Component/addnewholiday/addnewholiday.component';
 import { GenralSettingsComponent } from './Component/genral-settings/genral-settings.component';
+import { CustominterceptorInterceptor } from './Services/custominterceptor.interceptor';
+import { PagenotfoundComponent } from './Component/pagenotfound/pagenotfound.component';
+
 
 
 @NgModule({
@@ -48,7 +51,8 @@ import { GenralSettingsComponent } from './Component/genral-settings/genral-sett
     RegisterComponent,
     AddHolidaysComponent,
     AddnewholidayComponent,
-    GenralSettingsComponent
+    GenralSettingsComponent,
+    PagenotfoundComponent
   ],
   imports:[
     BrowserModule,
@@ -56,10 +60,16 @@ import { GenralSettingsComponent } from './Component/genral-settings/genral-sett
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-   SweetAlert2Module,
-   CalendarModule
+    SweetAlert2Module,
+    CalendarModule,
+    
     ],
-  providers: [],
+  providers: [{
+    provide :HTTP_INTERCEPTORS , useClass : CustominterceptorInterceptor,
+    multi:true,
+  },
+
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EmplyeeServiceService } from 'src/app/Services/emplyee-service.service';
 import Swal from 'sweetalert2';
 
@@ -10,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class LogInComponent {
   loginform:FormGroup
-  constructor(private service:EmplyeeServiceService , private fb:FormBuilder){
+  constructor(private service:EmplyeeServiceService , private fb:FormBuilder , private route:Router){
    this.loginform = this.fb.group({
     email:['',Validators.required],
     password:['',Validators.required]
@@ -28,15 +29,14 @@ export class LogInComponent {
 
    login() {
     this.service.login(this.email?.value, this.password?.value).subscribe(
-      () => {
-        window.open('http://localhost:4200/employee',"_Self")
+      (res) => {
+        console.log(res.token)
+        localStorage.setItem('token',res.token)
+        this.route.navigateByUrl('/employee')
       },
       (error) => {
         console.log(error)
-        //  if(error.errors === 'The Email field is required.')
-        //  {
-        //   Swal.fire('The Email field is required.')
-        //  }
+        Swal.fire('Error',"cant login email or password is uncorrect",'error')
       }
     );
   }

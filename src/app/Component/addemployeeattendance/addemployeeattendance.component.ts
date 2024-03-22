@@ -108,10 +108,12 @@ onSubmit() {
   };
   this.service.postEmpattendens(postData).subscribe(
     (response) => {
+      console.log(postData)
       Swal.fire('Success','Attendance record added successfully:','success');
       this.employeeForm.reset()
     },
     (errorResponse) => {
+      console.log(postData)
       if (errorResponse.error === "Attendance cannot be posted on holidays.") {
         console.log(errorResponse)
         Swal.fire('Error', 'Attendance cannot be posted on holidays.', 'error');
