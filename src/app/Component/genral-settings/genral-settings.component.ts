@@ -143,7 +143,7 @@ export class GenralSettingsComponent implements OnInit {
     this.service.postGenralSettings(updatedSettings).subscribe(
       () => {
         Swal.fire('Success','Settings saved successfully',"success");
-        this.Formdata.reset();
+        
       },
       (error) => {
         console.log(error)
