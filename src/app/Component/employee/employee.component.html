@@ -1,31 +1,55 @@
+<app-dashboard></app-dashboard>
+<style>
+  .responsive-table {
+    width: 80%; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the table horizontally */
+  }
 
-<div class="container mt-3">
-  <h1 class="text-center">Employees View</h1>
-  <div class="row"> 
-    <div>
-      <button class="border-0 bg-white" ><a routerLink="/Addemployee" class="btn btn-success text-decoration-none w-100" >Add New Employee</a></button>
-    </div>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Full Name</th>
-          <th>Gender</th>
-          <th>Address</th>
-          <th>Salary</th>
-          <th>View Button</th>
-          <th>Delete Button</th>
-        </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let item of emp">
-        <td> {{ item.fullName }} </td>
-        <td> {{ item.sex }} </td>
-        <td> {{ item.address }}</td>
-        <td> {{ item.salary }}</td>
-        <td> <a [routerLink]="item.id" class="btn btn-primary">View</a></td>
-        <td> <a (click)="deleteEmployee(item.id , item)" class="btn btn-danger">Delete</a></td>
-      </tr>
-      </tbody>
-    </table>
+  .table-header, .table-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd; /* Add border bottom to separate rows */
+  }
+
+  .col {
+    flex-basis: calc(100% / 5); /* Divide the columns into equal parts */
+    text-align: center; /* Center-align the content */
+  }
+
+  .container {
+    margin-top: 30px; /* Add some space above the table */
+    margin-right: 20px;
+  }
+</style>
+
+
+  <div class="container">
+    <h2 style="text-align: center;">All Employees</h2>
+    <ul class="responsive-table">
+      <li class="table-header">
+        <div class="col col-1">Name</div>
+        <div class="col col-1">Sex</div>
+        <div class="col col-1">Address</div>
+        <div class="col col-1">Salary</div>
+        <div class="col col-2">Action</div>
+      </li>
+      <li class="table-row" *ngFor="let item of emp">
+        <div class="col col-1" data-label="employee Name">{{ item.fullName }}</div>
+        <div class="col col-1" data-label="employee sex">{{ item.sex }}</div>
+        <div class="col col-1" data-label="address">{{ item.address }}</div>
+        <div class="col col-1" data-label="salary">{{ item.salary }}</div>
+        <div class="col col-2" data-label="salary">
+          <button [routerLink]="'/EditEmployee/' + item.id" class="btn btn-tbl-edit btn btn-secondary">
+            <i class="material-icons">Edit</i>
+          </button>
+          
+          &nbsp;|&nbsp; <!-- Add space between the buttons -->
+          <button class="btn btn-tbl-delete btn btn-danger" (click)="deleteEmployee(item.id, item)">
+            <i class="material-icons">delete</i>
+          </button>
+        </div>
+      </li>
+    </ul>
   </div>
-</div>
+

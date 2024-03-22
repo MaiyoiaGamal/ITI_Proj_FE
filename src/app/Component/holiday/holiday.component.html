@@ -1,50 +1,51 @@
-<!-- holiday.component.html -->
 
-<div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <h2>Add New Holiday</h2>
-        <form (ngSubmit)="addHoliday()">
-          <div class="form-group">
-            <label for="holidayName">Name:</label>
-            <input type="text" id="holidayName" name="holidayName" [(ngModel)]="newHoliday.name" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label for="holidayDate">Date:</label>
-            <input type="date" id="holidayDate" name="holidayDate" [(ngModel)]="newHoliday.date" class="form-control" required>
-          </div>
-          <br>
-          <br>
-          <button type="submit" class="btn btn-primary">Add Holiday</button>
-        </form>
-      </div>
-    </div>
-    
-    <div class="row mt-4">
-      <div class="col-md-6">
-        <h2>All Holidays</h2>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Date</th>
-              <th>Process</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let holiday of holidays">
-              <td>{{ holiday.name }}</td>
-              <td>{{ holiday.date }}</td>
-              <td>
-               <button type="button" class="btn btn-success"[routerLink]="['/EditHoliday', holiday.id]">Edit</button>
-                <span> | </span>
-                <button type="button" class="btn btn-danger" (click)="deleteHoliday(holiday.id)">Delete</button>
-              </td>
+  <app-dashboard></app-dashboard>
+<style>
+  .responsive-table {
+    width: 80%; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the table horizontally */
+  }
+
+  .table-header, .table-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd; /* Add border bottom to separate rows */
+  }
+
+  .col {
+    flex-basis: calc(100% / 5); /* Divide the columns into equal parts */
+    text-align: center; /* Center-align the content */
+  }
+
+  .container {
+    margin-top: 30px; /* Add some space above the table */
+    margin-right: 20px;
+  }
+</style>
+
+
+  <div class="container">
+    <h2 style="text-align: center;">All Holidays</h2>
+    <ul class="responsive-table">
+      <li class="table-header">
+        <div class="col col-1">Name</div>
+        <div class="col col-1">Date</div>
+        <div class="col col-2">Action</div>
+      </li>
+      <li class="table-row" *ngFor="let holiday of holidays">
+        <div class="col col-1" data-label="employee Name">{{ holiday.name }}</div>
+        <div class="col col-1" data-label="employee sex">{{ holiday.date }}</div>
+        <div class="col col-2" data-label="salary">
+          <button [routerLink]="['/EditHoliday', holiday.id]" class="btn btn-tbl-edit btn btn-secondary">
+            <i class="material-icons">Edit</i>
+          </button>
           
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+          &nbsp;|&nbsp; <!-- Add space between the buttons -->
+          <button class="btn btn-tbl-delete btn btn-danger" (click)="deletedeleteHoliday2(holiday.id,holiday)">
+            <i class="material-icons">delete</i>
+          </button>
+        </div>
+      </li>
+    </ul>
   </div>
-  

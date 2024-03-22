@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 export class ADDnewEmpComponent {
   employeeForm: FormGroup;
   minDate:string;
-
+  date: Date | undefined;
   constructor(private fb: FormBuilder, private employeeService:EmplyeeServiceService) {
     this.minDate = '2020-01-01'
     this.employeeForm = this.fb.group({
@@ -161,4 +161,8 @@ showAllErrors() {
     control?.markAsTouched({ onlySelf: true });
   });
 }
+
+
+
+
 }

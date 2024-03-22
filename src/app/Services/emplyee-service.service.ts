@@ -6,7 +6,9 @@ import {Observable} from 'rxjs'
 })
 export class EmplyeeServiceService {
   private apiUrl = 'http://localhost:5256/api/Holidays';
+  private apiUrl1 = 'http://localhost:5256/api/Holidays';
   private apiUrl2 = 'http://localhost:5256/api/Holidays';
+  
   constructor(private httpClient:HttpClient) {}
     getData():Observable<any>{
       return this.httpClient.get("http://localhost:5256/api/Employees");
@@ -58,7 +60,7 @@ export class EmplyeeServiceService {
 
    getattendancebyID(id:number)
    {
-     return this.httpClient.get(`http://localhost:5256/api/EmployeeAttndens/`+id)
+     return this.httpClient.get(`http://localhost:5256/api//EmployeeAttndens/`+id)
    }
 
    editemployeeattendance(employeeid:number , employee:any)
@@ -68,9 +70,10 @@ export class EmplyeeServiceService {
    getHolidays():Observable<any>{
     return this.httpClient.get("http://localhost:5256/api/Holidays");
   }
-  addHoliday(newHoliday: any): Observable<any> {
-    return this.httpClient.post<any>(`http://localhost:5256/api/Holidays`, newHoliday);
+  addHoliday(holidayData: any): Observable<any> {
+    return this.httpClient.post<any>('http://localhost:5256/api/Holidays', holidayData);
   }
+  
   updateHoliday(updatedHolidayId: number, updatedHolidayData: any): Observable<any> {
     const url = `${this.apiUrl}/${updatedHolidayId}`;
     return this.httpClient.put(url, updatedHolidayData);
@@ -111,6 +114,7 @@ export class EmplyeeServiceService {
    {
    return this.httpClient.get(`http://localhost:5256/api/Salary/${id}/${year}/${month}`)
    }
+   
 
    login(email:string,password:string):Observable<any>
    {
@@ -143,6 +147,5 @@ export class EmplyeeServiceService {
    {
     return this.httpClient.post('http://localhost:5256/api/Settings',setting);
    }
-
 
 }

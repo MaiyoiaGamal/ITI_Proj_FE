@@ -95,4 +95,5 @@ export class EmployeeAttendanceComponent implements OnInit {
         Swal.fire('Error',"Date Not Found Please Enter A Valid Date",'error');
       })
     }
+   
 }

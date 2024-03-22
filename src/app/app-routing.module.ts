@@ -14,29 +14,34 @@ import { EmployeesReportsComponent } from './Component/employees-reports/employe
 import { LogInComponent } from './Component/log-in/log-in.component';
 import { RegisterComponent } from './Component/register/register.component';
 import { DashboardComponent } from './Component/dashboard/dashboard.component';
+import { AddnewholidayComponent } from './Component/addnewholiday/addnewholiday.component';
 import { GenralSettingsComponent } from './Component/genral-settings/genral-settings.component';
+import {AuthGuard} from './Authgurad/auth.guard'
+import { PagenotfoundComponent } from './Component/pagenotfound/pagenotfound.component';
+
 
 const routes: Routes = [
-  {path:'', redirectTo :'home' , pathMatch:'full'},
-  {path:'home',component:HomeComponent},
   {path:'Login', component:LogInComponent},
-  {path:'Register', component:RegisterComponent},
-  {path:'Dash',component:DashboardComponent} ,
-  {path:'employee/:ID',component:EmployeeDeatilesComponent},
-  {path:'employee',component:EmployeeComponent},
-  {path:'Addemployee',component:ADDnewEmpComponent},
-  //{path:'EditEmployee',component:EditEmployeeComponent},
-  {path:'EditEmployee/:ID',component:EditEmployeeComponent},
-  {path:'EmployeeAttendance' , component:EmployeeAttendanceComponent},
-  {path:'AddEmployeeAttendance' , component:AddemployeeattendanceComponent},
-  {path:'EditEmployeeAttendance/:ID/:Date' , component:EditAttendanceComponent},
-  {path:'Holiday' , component:HolidayComponent},
-  {path: 'EditHoliday/:id', component: EditholidayComponent },
-  {path:'EmployeesReports', component:EmployeesReportsComponent},
-  {path:'genralsettings',component:GenralSettingsComponent},
-  
-
-
+  {path:'', redirectTo :'/Login' , pathMatch:'full'},
+  {
+    path: '', canActivate: [AuthGuard], children: [
+      { path: 'home', component: HomeComponent },
+      { path: 'Dash', component: DashboardComponent }, 
+      { path: 'employee/:ID', component: EmployeeDeatilesComponent },
+      { path: 'employee', component: EmployeeComponent },
+      { path: 'Addemployee', component: ADDnewEmpComponent },
+      { path: 'EditEmployee/:ID', component: EditEmployeeComponent },
+      { path: 'EmployeeAttendance', component: EmployeeAttendanceComponent },
+      { path: 'AddEmployeeAttendance', component: AddemployeeattendanceComponent },
+      { path: 'EditEmployeeAttendance/:ID/:Date', component: EditAttendanceComponent },
+      { path: 'Holiday', component: HolidayComponent },
+      { path: 'AddHoliday', component: AddnewholidayComponent },
+      { path: 'EditHoliday/:id', component: EditholidayComponent },
+      { path: 'EmployeesReports', component: EmployeesReportsComponent },
+      { path: 'genralsettings', component: GenralSettingsComponent },
+    ]
+  },
+{path:'**',component:PagenotfoundComponent}
 ];
 
 @NgModule({

@@ -1,15 +1,40 @@
-<div class="container">
-    <h2>Edit Holiday</h2>
-    <form (ngSubmit)="updateHoliday()">
-      <div class="form-group">
-        <label for="holidayName">Name:</label>
-        <input type="text" id="holidayName" name="holidayName" [(ngModel)]="editedHoliday.name" class="form-control" required>
-      </div>
-      <div class="form-group">
-        <label for="holidayDate">Date:</label>
-        <input type="date" id="holidayDate" name="holidayDate" [(ngModel)]="editedHoliday.date" class="form-control" required>
-      </div>
-      <button type="submit" class="btn btn-primary">Update Holiday</button>
-    </form>
-  </div>
-  
+<app-dashboard></app-dashboard>
+  <section class="content">
+    <div class="container-fluid">
+      <div class=" row justify-content-center align-items-center"style="height: 100vh;">
+        <div class="col-lg-8 col-md-10">
+          <div class="card ">
+            <div class="header text-center">
+                <h2>
+                    <strong>Update</strong> Holiday</h2>
+            </div>
+            <div class="body">
+              <form  (ngSubmit)="updateHoliday()" class="">  
+                <div class="col-sm-12">
+                  <div class="form-group">
+                      <div class="form-line">
+                        <input type="text" id="holidayName" name="holidayName" [(ngModel)]="editedHoliday.name" class="form-control" required>
+                      </div>
+                      
+                  </div>
+              </div>  
+              <br>
+              <br> 
+              <div class="col-sm-12">
+                <div class="form-group">
+                    <div class="form-line">
+                      <input type="date" id="holidayDate" name="holidayDate" [(ngModel)]="editedHoliday.date" class="form-control" required>
+                    </div>
+                </div>
+            </div>  
+            <br>
+            <br>
+            <div class="col-lg-12 p-t-20 text-center">
+              <button type="submit" class="btn btn-primary waves-effect m-r-15">Edit</button>
+          </div>
+                </form>
+            </div>
+            </div>
+            </div>
+            </div>
+          
