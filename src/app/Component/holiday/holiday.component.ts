@@ -13,7 +13,7 @@ export class HolidayComponent implements OnInit {
   newHoliday: any = { name: '', date: '' };
   currentPage: number = 1;
   itemsPerPage: number = 6;
- 
+  totalPages: number = 0;
   totalItems: number = 0;
   constructor(private holidaysService:EmplyeeServiceService) { }
   ngOnInit(): void {
@@ -24,6 +24,7 @@ export class HolidayComponent implements OnInit {
       .subscribe(holidays => {
         this.holidays = holidays;
         this.totalItems = holidays.length;
+        this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
         this.holidays  = this.holidays .slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage);
       });
   }
@@ -46,8 +47,10 @@ export class HolidayComponent implements OnInit {
       });
   }
   onPageChange(page: number): void {
+    if (page >= 1 && page <= this.totalPages) {
     this.currentPage = page;
     this.getHolidays();
+    }
   }
   getPageNumbers(): number[] {
     const totalPages = Math.ceil(this.totalItems / this.itemsPerPage);

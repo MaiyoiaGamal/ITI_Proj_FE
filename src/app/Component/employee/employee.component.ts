@@ -15,7 +15,7 @@ export class EmployeeComponent implements OnInit{
  emp:any[]=[]
  currentPage: number = 1;
  itemsPerPage: number = 6;
-
+ totalPages: number = 0;
  totalItems: number = 0;
 
  
@@ -28,6 +28,7 @@ export class EmployeeComponent implements OnInit{
     this.emplyee.getData().subscribe((data: any) => {
       this.emp = data;
       this.totalItems = this.emp.length;
+      this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
       this.emp = this.emp.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage);
     });
   }
@@ -57,9 +58,11 @@ export class EmployeeComponent implements OnInit{
       }
     });
   }
-  onPageChange(pageNumber: number): void {
-    this.currentPage = pageNumber;
-   this.loadData();
+  onPageChange(page: number): void {
+    if (page >= 1 && page <= this.totalPages) { // Ensure page is within valid range
+      this.currentPage = page;
+      this.loadData(); // Load data for the selected page
+    }
   }
   
 

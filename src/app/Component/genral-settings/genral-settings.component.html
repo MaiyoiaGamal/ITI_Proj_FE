@@ -1,10 +1,4 @@
 
-
-
-
-  
-
-
 <app-dashboard></app-dashboard>
 <section class="content">
   <div class="container-fluid">
@@ -55,45 +49,62 @@
                     </div>
                     </div>
               <br>
+             
+                    
+              <div class="col-md-12  ">
+                <!-- Label for Weekend section -->
+                <h4>Weekend</h4>
+              </div>
               
-                    <div class="form-check">
-                      <input type="checkbox" value="0"  id="sunday" formControlName="sunday" (change)="onCheckboxChange('sunday')" class="form-check-input">
-                      <label for="sunday" class="form-check-label">Sunday</label>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <!-- Checkboxes for Sunday and Tuesday -->
+                        
+                        <div class="form-check">
+                          <input type="checkbox" value="0" id="sunday" formControlName="sunday" (change)="onCheckboxChange('sunday')" class="form-check-input">
+                          <label for="sunday" class="form-check-label">Sunday</label>
+                        </div>
+                        <div class="form-check">
+                          <input type="checkbox" value="2" id="tuesday" formControlName="tuesday" (change)="onCheckboxChange('tuesday')" class="form-check-input">
+                          <label for="tuesday" class="form-check-label">Tuesday</label>
+                        </div>
+                        
+                        <!-- Checkboxes for Thursday and Friday -->
+                        <div class="form-check">
+                          <input type="checkbox" value="4" id="thursday" formControlName="thursday" (change)="onCheckboxChange('thursday')" class="form-check-input">
+                          <label for="thursday" class="form-check-label">Thursday</label>
+                        </div>
+                        
+                        <div class="form-check">
+                          <input type="checkbox" value="6" id="saturday" formControlName="saturday" (change)="onCheckboxChange('saturday')" class="form-check-input">
+                          <label for="saturday" class="form-check-label">Saturday</label>
+                        </div>
+                      </div>
+                    
+                      <div class="col-md-6">
+                        <!-- Checkboxes for Monday and Wednesday -->
+                        <div class="form-check">
+                          <input type="checkbox" value="1" id="monday" formControlName="monday" (change)="onCheckboxChange('monday')" class="form-check-input">
+                          <label for="monday" class="form-check-label">Monday</label>
+                        </div>
+                        <div class="form-check">
+                          <input type="checkbox" value="3" id="wednesday" formControlName="wednesday" (change)="onCheckboxChange('wednesday')" class="form-check-input">
+                          <label for="wednesday" class="form-check-label">Wednesday</label>
+                        </div>
+                        
+                        <!-- Checkbox for Saturday -->
+                        <div class="form-check">
+                          <input type="checkbox" value="5" id="friday" formControlName="friday" (change)="onCheckboxChange('friday')" class="form-check-input">
+                          <label for="friday" class="form-check-label">Friday</label>
+                        </div>
+                       
+                      </div>
                     </div>
-                  
-                    <div class="form-check">
-                      <input type="checkbox" value="1"  id="monday" formControlName="monday" (change)="onCheckboxChange('monday')" class="form-check-input">
-                      <label for="monday" class="form-check-label">Monday</label>
-                    </div>
-                  
-                    <div class="form-check">
-                      <input type="checkbox" value="2"  id="tuesday" formControlName="tuesday" (change)="onCheckboxChange('tuesday')" class="form-check-input">
-                      <label for="tuesday" class="form-check-label">Tuesday</label>
-                    </div>
-                  
-                    <div class="form-check">
-                      <input type="checkbox"  value="3"  id="wednesday" formControlName="wednesday" (change)="onCheckboxChange('wednesday')" class="form-check-input">
-                      <label for="wednesday" class="form-check-label">Wednesday</label>
-                    </div>
-                  
-                    <div class="form-check">
-                      <input type="checkbox" value="4"  id="thursday" formControlName="thursday" (change)="onCheckboxChange('thursday')" class="form-check-input">
-                      <label for="thursday" class="form-check-label">Thursday</label>
-                    </div>
-                  
-                    <div class="form-check">
-                      <input type="checkbox" value="5"  id="friday" formControlName="friday" (change)="onCheckboxChange('friday')" class="form-check-input">
-                      <label for="friday" class="form-check-label">Friday</label>
-                    </div>
-                  
-                    <div class="form-check">
-                      <input type="checkbox" value="6"  id="saturday" formControlName="saturday" (change)="onCheckboxChange('saturday')" class="form-check-input">
-                      <label for="saturday" class="form-check-label">Saturday</label>
-                    </div>
+                    
                   
                   
-                  
-                    <div class="col-lg-12 p-t-20 text-center">
+                    <div class="sybmit">
                       <button type="submit" class="btn btn-primary waves-effect m-r-15" (click)="onSubmit()" [disabled]="Formdata.invalid">Submit</button>
 
                       
