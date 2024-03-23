@@ -103,11 +103,12 @@ export class EmployeeAttendanceComponent implements OnInit {
         Swal.fire('Error',"Date Not Found Please Enter A Valid Date",'error');
       })
     }
-    
+ 
     updateDisplayedData() {
       this.allemp = this.allemp.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage);
     }
-    deleteAttendance(EmployeeId: number, item: any): void {
+  
+    deleteAttendance(EmployeeId: number, item: any ,date:string): void {
       Swal.fire({
         title: 'Are you sure?',
         text: 'You want to delete this item?',
@@ -119,10 +120,10 @@ export class EmployeeAttendanceComponent implements OnInit {
         cancelButtonText: 'Cancel'
       }).then((result) => {
         if (result.isConfirmed) {
-          this.service.deleteEmployeeAttendance(EmployeeId)
+          this.service.deleteEmployeeAttendance(EmployeeId,date)
             .subscribe(() => {
               Swal.fire('Success', 'Attendance record deleted successfully', 'success');
-              // Optionally, you can remove the deleted item from the array
+              
               const index = this.allemp.indexOf(item);
               if (index !== -1) {
                 this.allemp.splice(index, 1);

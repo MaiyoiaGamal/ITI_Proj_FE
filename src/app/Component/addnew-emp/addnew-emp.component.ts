@@ -143,7 +143,7 @@ onSubmit() {
       },
       (error: any) => { 
         if (error.status === 409) {
-          Swal.fire('Error', 'Employee with the same name already exists.', 'error');
+          Swal.fire('Error', 'Employee with the same status(Name,SSN) already exists.', 'error');
         } else {
           console.error('An error occurred while adding employee:', error);
           Swal.fire('Error', 'Failed to add employee. Please try again.', 'error');

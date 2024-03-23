@@ -76,7 +76,7 @@
                     <td>{{item.late}}</td>
                     <td>{{item.plus}}</td>
                     <td><a [routerLink]="['/EditEmployeeAttendance',item.id,item.date]" class="btn btn-primary">Edit</a></td>
-                    <td><a class="btn btn-danger" (click)="deleteAttendance(item.id, item)">Delete</a></td>
+                    <td><a class="btn btn-danger" (click)="deleteAttendance(item.id, item, item.date)">Delete</a></td>
 
                   </tr>
                 </tbody>

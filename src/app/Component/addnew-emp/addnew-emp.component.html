@@ -20,7 +20,7 @@
                           Full Name is required
                         </small>
                         <small class="alert alert-danger" *ngIf="fullName?.errors?.['pattern']" style="font-size: 0.6em;">
-                          Full Name is not in the correct format (+3 letters)
+                            Full Name (ex: zzzz zzzz)
                         </small>
                       </div>
                 </div>
@@ -38,8 +38,8 @@
                         Nationality is required
                     </small>
                     <small class="alert alert-danger " *ngIf="nationality?.errors?.['pattern']">
-                      Nationality max length is 15 digets
-                   </small>
+                        Nationality max length is 15 Letters
+                    </small>
                 </div>
             </div>
         </div>
@@ -56,7 +56,7 @@
               SSN is required
           </small>
           <small class="alert alert-danger" *ngIf="ssn?.errors?.['pattern']">
-            ssn is not match the pattern 
+            ssn max length is 14 digets
         </small>
       </div>
       </div>
@@ -74,7 +74,7 @@
             Salary must be only numbers
           </small>
           <small class="alert alert-danger" *ngIf="salary?.errors?.['minSalary']"style="font-size: 0.7em;">
-             the minSalary must be grater than 2000
+            Salara must be >= 2000
           </small>
       </div>
       </div>
@@ -117,7 +117,7 @@
                         Email is required
                     </small>
                     <small class="alert alert-danger" *ngIf="email?.errors?.['email']">
-                      the pattern email is d@d
+                        email pattern email d@d
                   </small>
                 </div>
             </div>
