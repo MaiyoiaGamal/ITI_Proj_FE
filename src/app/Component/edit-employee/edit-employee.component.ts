@@ -154,7 +154,7 @@ export class EditEmployeeComponent implements OnInit {
     this.minDate = '2020-01-01'
     this.minage = '2004-01-01'
     this.employeeForm = this.fb.group({
-      fullName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]{3,20}$/)]],  
+      fullName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+\s[a-zA-Z]+$/)]],  
       email: ['', [Validators.required, Validators.email]],
       ssn: ['', [Validators.required, Validators.maxLength(14),Validators.pattern('^[0-9]{14}$')]],
       address: ['', [Validators.required]],

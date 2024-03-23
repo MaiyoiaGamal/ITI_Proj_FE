@@ -50,6 +50,12 @@
       flex-basis: 100%;
     }
 
+    .disabled {
+      pointer-events: none;
+      color: #6c757d;
+      cursor: default;
+    }
+    
     .col {
       display: flex;
       padding: 10px 0;
