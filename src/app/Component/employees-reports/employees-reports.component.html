@@ -23,7 +23,7 @@
                                   <div class="form-group">
                                     <select class="form-select form-control" id="id" aria-label="Select Employee" formControlName="id" (change)="onSelect($event)" required>
                                       <option disabled selected>Select an Employee</option>
-                                      <option *ngFor="let item of allemp" [value]="item.id">{{ item.fullName }}</option>
+                                      <option *ngFor="let item of filteredEmployeesarray" [value]="item.id">{{ item.fullName }}</option>
                                   </select>
                                   </div>
                               </div>
@@ -76,7 +76,7 @@
                           <td style="white-space: nowrap;">{{ getempbydate.lateHours }}</td>
                           <td style="white-space: nowrap;">{{ getempbydate.addedSalary }}</td>
                           <td style="white-space: nowrap;">{{ getempbydate.subtractedSalary }}</td>
-                          <td *ngIf="getempbydate.overallSalary > 50 " style="white-space: nowrap;">{{ getempbydate.overallSalary }}</td>
+                          <td style="white-space: nowrap;">{{ getempbydate.overallSalary }}</td>
                         </tr>
                       </tbody>
                     </table>

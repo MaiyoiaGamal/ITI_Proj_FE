@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators  } from '@angular/forms';
 import { EmplyeeServiceService } from 'src/app/Services/emplyee-service.service';
 import Swal from 'sweetalert2';
 
@@ -18,13 +18,25 @@ export class AddemployeeattendanceComponent implements OnInit {
   employeeAttendanceData:any;
   constructor(private fb:FormBuilder , private service:EmplyeeServiceService) {
     this.employeeForm = this.fb.group({
-      date: ['', [Validators.required]],
+      date: ['', [Validators.required , this.minSelectDateValidator.bind(this)]],
       attendens: ['', [Validators.required]],
       deperture: ['', [Validators.required,]],
       name: ['', [Validators.required]],
       empid:['', [Validators.required]]
   })
 }
+minSelectDateValidator(Control:AbstractControl):{[key:string] : any} | null 
+{
+  const value = Control.value
+  const dateValue = new Date(value)
+  const date = new Date('2020-01-01')
+  if(dateValue < date)
+    return { 'dateValue': true }; 
+
+  return null;
+  
+}
+
 
 items: any[] = [
   { id: 1, name: 'John Doe' },
@@ -126,7 +138,19 @@ onSubmit() {
       } else if (errorResponse.error === "Attendance cannot be posted on weekends.") {
         console.log(errorResponse)
         Swal.fire('Error', "Attendance cannot be posted on weekends.", 'error');
-      }else {
+      }
+      else if (errorResponse.error === "Can't select date before 2020"){
+          Swal.fire('Error',"Can't select date before 2020",'error')
+      } 
+      else if (errorResponse.error === "Can't select time before 18:00:00")
+      {
+        Swal.fire('Error',"Can't select time before 18:00:00",'error')
+      }
+      else if (errorResponse.error === "Can't select time before 9:00:00")
+      {
+        Swal.fire('Error',"Can't select time before 9:00:00",'error')
+      }
+      else {
         console.log(errorResponse)
         Swal.fire('Error', 'An error occurred.', 'error');
       }}

@@ -20,7 +20,7 @@
                           Full Name is required
                         </small>
                         <small class="alert alert-danger" *ngIf="fullName?.errors?.['pattern']">
-                          FullName format is (+3 letters)
+                          Full Name (ex: zzzz zzzz)
                         </small>
                       </div>
                 </div>
@@ -71,7 +71,7 @@
             Salary is required
           </small>
           <small class="alert alert-danger" *ngIf="salary?.errors?.['pattern']">
-            Salary pattern is wrong must be only numbers
+            Salary must be only numbers
           </small>
           <small class="alert alert-danger" *ngIf="salary?.errors?.['minSalary']">
             Salara must be >= 2000
@@ -131,7 +131,7 @@
                     ContractDate is required
                 </small>
                 <small class="alert alert-danger" *ngIf="contractDate?.errors?.['minContractDate']">
-                  Date of establishment of the company is (1-1-2020)
+                establishment of the company is (1-1-2020)
                 </small>
                 <small class="alert alert-danger" *ngIf="contractDate?.errors?.['maxContractDate']">
                   you can't select date after (1-1-2040)

@@ -41,6 +41,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- minSelectDateValidator -->
+                            <div class="mt-3" [hidden]="date?.valid || date?.untouched">
+                                <small class="alert alert-danger" *ngIf="date?.errors?.['required']">
+                                    date is required
+                                </small>
+                                <small class="alert alert-danger" *ngIf="date?.errors?.['dateValue']">
+                                  year >= 2020
+                              </small>
+                            </div>
                             <br>
                             <br>
                             <div class="row clearfix">
