@@ -8,12 +8,16 @@
           <div class="header text-center">
             <h2><strong>General</strong> Setting</h2>
           </div>
+         
           <div class="body">
-              <div class="row clearfix">
-                <div class="col-sm-6">
+              <div class="row ">
+                <div class="col-12">
+                 
                   <form [formGroup]="Formdata" (ngSubmit)="onSubmit()" class="settings-form">
+                    <div class="col-6 clearfix">
                     <div class="form-group">
                       <div class="form-line">
+                        <label>PLus</label>
                         <input type="text" id="plus" formControlName="plus" class="form-control" required placeholder="Plus">
                         <div *ngIf="plus?.invalid && (plus?.dirty || plus?.touched)" class="error-messages">
                             <div *ngIf="plus?.errors?.['required']"><small class="alert alert-danger">Plus is required</small></div>
@@ -28,18 +32,13 @@
                     </div>
                   <br>
                   <style>
-                    .error-messages {
-  margin-top: 20px; 
-}
-
-
-
+                    .error-messages {margin-top: 20px; }
 
                 </style>
                 
                 
                     <div class="form-group">
-                      
+                      <label>Discount</label> 
                       <input type="text" id="late" formControlName="late" class="form-control" required placeholder="Late">
                       <div *ngIf="late?.invalid && (late?.dirty || late?.touched)" class="error-messages">
                         <div *ngIf="late?.errors?.['required']"><small class="alert alert-danger">late is required</small></div>
@@ -48,8 +47,9 @@
                         <div *ngIf="late?.errors?.['pattern']"><small class="alert alert-danger">late must contain only numbers</small></div>
                     </div>
                     </div>
+                 
               <br>
-             
+                    </div>
                     
               <div class="col-md-12  ">
                 <!-- Label for Weekend section -->
@@ -57,8 +57,8 @@
               </div>
               
 
-                    <div class="row">
-                      <div class="col-md-6">
+                    <div class="row ">
+                      <div class="col">
                         <!-- Checkboxes for Sunday and Tuesday -->
                         
                         <div class="form-check">
@@ -66,40 +66,44 @@
                           <label for="sunday" class="form-check-label">Sunday</label>
                         </div>
                         <div class="form-check">
-                          <input type="checkbox" value="2" id="tuesday" formControlName="tuesday" (change)="onCheckboxChange('tuesday')" class="form-check-input">
-                          <label for="tuesday" class="form-check-label">Tuesday</label>
-                        </div>
-                        
-                        <!-- Checkboxes for Thursday and Friday -->
-                        <div class="form-check">
-                          <input type="checkbox" value="4" id="thursday" formControlName="thursday" (change)="onCheckboxChange('thursday')" class="form-check-input">
-                          <label for="thursday" class="form-check-label">Thursday</label>
-                        </div>
-                        
-                        <div class="form-check">
-                          <input type="checkbox" value="6" id="saturday" formControlName="saturday" (change)="onCheckboxChange('saturday')" class="form-check-input">
-                          <label for="saturday" class="form-check-label">Saturday</label>
-                        </div>
-                      </div>
-                    
-                      <div class="col-md-6">
-                        <!-- Checkboxes for Monday and Wednesday -->
-                        <div class="form-check">
                           <input type="checkbox" value="1" id="monday" formControlName="monday" (change)="onCheckboxChange('monday')" class="form-check-input">
                           <label for="monday" class="form-check-label">Monday</label>
+                        </div>
+                        <div class="form-check">
+                          <input type="checkbox" value="5" id="friday" formControlName="friday" (change)="onCheckboxChange('friday')" class="form-check-input">
+                          <label for="friday" class="form-check-label">Friday</label>
+                    
+                      </div>
+                        </div>
+                        <div class="col">
+                        <!-- Checkboxes for Thursday and Friday -->
+                        <div class="form-check">
+                          <input type="checkbox" value="2" id="tuesday" formControlName="tuesday" (change)="onCheckboxChange('tuesday')" class="form-check-input">
+                          <label for="tuesday" class="form-check-label">Tuesday</label>
                         </div>
                         <div class="form-check">
                           <input type="checkbox" value="3" id="wednesday" formControlName="wednesday" (change)="onCheckboxChange('wednesday')" class="form-check-input">
                           <label for="wednesday" class="form-check-label">Wednesday</label>
                         </div>
-                        
-                        <!-- Checkbox for Saturday -->
-                        <div class="form-check">
-                          <input type="checkbox" value="5" id="friday" formControlName="friday" (change)="onCheckboxChange('friday')" class="form-check-input">
-                          <label for="friday" class="form-check-label">Friday</label>
-                        </div>
                        
                       </div>
+                    
+                      <div class="col">
+                        <!-- Checkboxes for Monday and Wednesday -->
+                        <div class="form-check">
+                          <input type="checkbox" value="4" id="thursday" formControlName="thursday" (change)="onCheckboxChange('thursday')" class="form-check-input">
+                          <label for="thursday" class="form-check-label">Thursday</label>
+                        </div>
+                        <div class="form-check">
+                          <input type="checkbox" value="6" id="saturday" formControlName="saturday" (change)="onCheckboxChange('saturday')" class="form-check-input">
+                          <label for="saturday" class="form-check-label">Saturday</label>
+                        </div>
+                      
+                       
+                       </div> 
+                       
+                        <!-- Checkbox for Saturday -->
+                        
                     </div>
                     
                   
