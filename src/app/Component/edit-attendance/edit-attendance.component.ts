@@ -120,15 +120,44 @@ export class EditAttendanceComponent implements OnInit {
           this.employeeform.reset();
           this.location.back()
         },
-        (error) => {
-          console.error('Error updating employee:', error);
-          Swal.fire('Error','Failed to update employee. Please try again.',"error");
+        (errorResponse) => {if (errorResponse.error === "Attendance cannot be posted on holidays.") {
+          console.log(errorResponse)
+          Swal.fire('Error', 'Attendance cannot be posted on holidays.', 'error');
+        } else if (errorResponse.error === 'Employee not found.') {
+          console.log(errorResponse)
+          Swal.fire('Error', 'Employee not found.', 'error');
+        } else if (errorResponse.error === "Attendance for the same date already exists.") {
+          console.log(errorResponse)
+          Swal.fire('Error', 'Attendance for the same date already exists.', 'error');
+        } else if (errorResponse.error === "Attendance cannot be posted on weekends.") {
+          console.log(errorResponse)
+          Swal.fire('Error', "Attendance cannot be posted on weekends.", 'error');
         }
-      );
-    } else {
-      console.log('Form is not valid. Please fill all required fields.');
+        else if (errorResponse.error === "Can't select date before 2020"){
+            Swal.fire('Error',"Can't select date before 2020",'error')
+        } 
+        else if (errorResponse.error === "Can't select time before 18:00:00")
+        {
+          Swal.fire('Error',"Can't select time before 18:00:00",'error')
+        }
+        else if (errorResponse.error === "Can't select time before 9:00:00")
+        {
+          Swal.fire('Error',"Can't select time before 9:00:00",'error')
+        } 
+        else if(errorResponse.error === "can't select date after today date")
+        {
+          Swal.fire('Error',"Can't Select Future Date",'error')
+        }
+        else if (errorResponse.error === "Can't select time after 12:00:00")
+        {
+          Swal.fire('Error',"Can't select time  after 12:00:00",'error')
+        }
+        else {
+          console.log(errorResponse)
+          Swal.fire('Error', 'An error occurred.', 'error');
+        }}
+    )}
+      }
     }
-  }
-
-
-}
+  
+  

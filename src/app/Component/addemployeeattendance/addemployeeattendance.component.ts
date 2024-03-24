@@ -149,6 +149,14 @@ onSubmit() {
       else if (errorResponse.error === "Can't select time before 9:00:00")
       {
         Swal.fire('Error',"Can't select time before 9:00:00",'error')
+      } 
+      else if(errorResponse.error === "can't select date after today date")
+      {
+        Swal.fire('Error',"Can't Select Future Date",'error')
+      }
+      else if (errorResponse.error === "Can't select time  after 12:00:00")
+      {
+        Swal.fire('Error',"Can't select time  after 12:00:00",'error')
       }
       else {
         console.log(errorResponse)
