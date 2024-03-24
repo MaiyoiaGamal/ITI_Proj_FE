@@ -1,23 +1,87 @@
 <app-dashboard></app-dashboard>
+
 <section class="content">
-    <div class="container-fluid">
+    <div class="container">
       <div class="row justify-content-center">
-        <div class="col-lg-8 col-md-10">
-          <div class="card ">
+        <div class="col-lg-12 col-md-10">
+          <div class="card">
             <div class="header text-center">
                 <h2>
-                    <strong>Employee</strong> Details</h2>
-            </div>
+                    <strong>Employee</strong>  Details</h2>
+            </div><br>
             <div class="body">
-                <p class="card-text"><b>Employee Name :</b> {{emp.fullName}}</p>
-              <p class="card-text"><b>Employee Address : </b> {{emp.address}}</p>
-              <p class="card-text"><b>Employee Email :</b> {{emp.email}}</p>
-              <p class="card-text"><b>Employee SSN : </b>{{emp.ssn}}</p>
-              <p class="card-text"><b>Employee phoneNumber : </b>{{emp.phoneNumber}}</p>
-              <p class="card-text"><b>Employee Nationality : </b> {{emp.nationality}}</p>
-              <p class="card-text"><b>Employee BirthDate : </b> {{emp.birthDate}}</p>
-              <p class="card-text"><b>Employee ContractDate : </b> {{emp.contractDate}}</p>
-            
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0 num">Full Name</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{emp.fullName}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0 num">SSN</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{emp.ssn}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0 num">phone </p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{emp.phoneNumber}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0 num">Email</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{emp.email}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0 num">Nationality</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{emp.nationality}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0 num">Address</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{emp.address}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0 num">Birth Date</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{emp.birthDate}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0 num">Contract</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{emp.contractDate}}</p>
+                </div>
+              </div>
+              <hr>
               <div class="col-lg-12 p-t-20 text-center">
                 <button type="button" class="btn btn-primary waves-effect m-r-15"routerLink="/employee" >Back To List</button>
                 &nbsp;|&nbsp;
