@@ -5,8 +5,8 @@ import {Observable} from 'rxjs'
   providedIn: 'root'
 })
 export class EmplyeeServiceService {
-  private baseURL = "http://10.211.55.3:5256"
-  //private baseURL = "http://localhost:5256"
+  //private baseURL = "http://10.211.55.3:5256"
+  private baseURL = "http://localhost:5256"
   private apiUrl = this.baseURL+'/api/Holidays';
   private apiUrl1 = this.baseURL+"/api/Holidays";
   private apiUrl2 = this.baseURL+"/api/Holidays";

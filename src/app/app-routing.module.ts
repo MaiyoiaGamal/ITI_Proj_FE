@@ -22,13 +22,13 @@ import { PagenotfoundComponent } from './Component/pagenotfound/pagenotfound.com
 
 const routes: Routes = [
   {path:'Login', component:LogInComponent},
-  {path:'', redirectTo :'/Login' , pathMatch:'full'},
+  { path: 'home', component: HomeComponent },
+  {path:'', redirectTo :'/home' , pathMatch:'full'},
   {
     path:'Register',component:RegisterComponent
   },
   {
     path: '', canActivate: [AuthGuard], children: [
-      { path: 'home', component: HomeComponent },
       { path: 'Dash', component: DashboardComponent }, 
       { path: 'employee/:ID', component: EmployeeDeatilesComponent },
       { path: 'employee', component: EmployeeComponent },
