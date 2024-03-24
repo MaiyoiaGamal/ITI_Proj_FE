@@ -15,6 +15,10 @@ export class EmployeeAttendanceComponent implements OnInit {
   end:string = '';
   employeeform : FormGroup; 
   dataLoaded: boolean = false
+  currentPage: number = 1;
+  itemsPerPage: number = 6;
+  totalPages: number = 0;
+  totalItems: number = 0;
   constructor(private service:EmplyeeServiceService , private fb:FormBuilder){
     this.employeeform = this.fb.group({
       startdate:['',[Validators.required,this.dateFormatValidator.bind(this)]],
@@ -88,14 +92,22 @@ export class EmployeeAttendanceComponent implements OnInit {
       (data: any) => {
         this.allemp = data;
         this.dataLoaded = true;
+        
+        this.totalItems = this.allemp.length;
+        this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
+        this.updateDisplayedData();
         console.log(this.allemp)
-        this.employeeform.reset()
+        
       },
       (error) => {
         Swal.fire('Error',"Date Not Found Please Enter A Valid Date",'error');
       })
     }
-   
+ 
+    updateDisplayedData() {
+      this.allemp = this.allemp.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage);
+    }
+  
     deleteAttendance(EmployeeId: number, item: any ,date:string): void {
       Swal.fire({
         title: 'Are you sure?',
@@ -121,5 +133,19 @@ export class EmployeeAttendanceComponent implements OnInit {
             });
         }
       });
+    }
+    onPageChange(page: number): void {
+      if (page >= 1 && page <= this.totalPages) {
+        this.currentPage = page;
+        this.displaytable();
+      }
+    }
+  
+    getPageNumbers(): number[] {
+      let pagesArray: number[] = [];
+      for (let i = 1; i <= Math.ceil(this.totalItems / this.itemsPerPage); i++) {
+        pagesArray.push(i);
+      }
+      return pagesArray;
     }
 }

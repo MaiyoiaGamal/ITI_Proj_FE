@@ -37,3 +37,19 @@ select.ng-valid[required],
 textarea.ng-valid[required] {
     border-left: 5px solid #42a948; /* Green border */
 }
+
+.form-check{
+ padding-bottom: 10px;
+
+}
+.sybmit{
+  padding-left: 230px;
+
+}
+h4 {
+  font-size: 24px; /* Adjust the font size as needed */
+  font-weight: bold; /* Make the text bold */
+  color: #333; /* Set the text color */
+
+}
+

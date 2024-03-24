@@ -42,6 +42,7 @@ const routes: Routes = [
       { path: 'EditHoliday/:id', component: EditholidayComponent },
       { path: 'EmployeesReports', component: EmployeesReportsComponent },
       { path: 'genralsettings', component: GenralSettingsComponent },
+      { path: 'EmployeeDetails/:ID', component: EmployeeDeatilesComponent },
     ]
   },
 {path:'**',component:PagenotfoundComponent}

@@ -9,7 +9,11 @@
     padding-bottom: 50px;
     margin:auto;
   }
-  
+  .disabled {
+    pointer-events: none;
+    color: #6c757d;
+    cursor: default;
+  }
   .form-control {
     box-shadow: 0 1px 20px 0 #B0C1D9;
   }
